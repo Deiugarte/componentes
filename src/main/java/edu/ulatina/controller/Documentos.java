@@ -5,7 +5,7 @@
  */
 package edu.ulatina.controller;
 
-import edu.ulatina.controller.SearchResulSchema;
+import edu.ulatina.controller.SearchResultSchema;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -29,11 +29,18 @@ import org.json.simple.parser.ParseException;
  */
 public class Documentos {
 
-    private String HOST;
-    private String USERNAME;
-    private String PASSWORD;
-
+    private String HOST = "https://ada9d60a6f404a6ea207509586f2b58b.us-east-1.aws.found.io:9243";
+    private String USERNAME = "elastic";
+    private String PASSWORD = "4y2fAlLnUWKt4SZShU6DhM1R";
     public Documentos() {
+//elastic ZWxhc3RpYw==
+//elastic:a        ZWxhc3RpYzph
+//a:elastic   YTplbGFzdGlj
+//elastic:4y2fAlLnUWKt4SZShU6DhM1R  ZWxhc3RpYzo0eTJmQWxMblVXS3Q0U1pTaFU2RGhNMVI=
+//elastic4y2fAlLnUWKt4SZShU6DhM1R  ZWxhc3RpYzR5MmZBbExuVVdLdDRTWlNoVTZEaE0xUg==
+//a:a YTph
+//b:b Yjpi
+
     }
 
     public Documentos(String HOST, String USERNAME, String PASSWORD) {
@@ -42,7 +49,7 @@ public class Documentos {
         this.PASSWORD = PASSWORD;
     }
 
-    public List<SearchResulSchema> busqueda(String dato) throws ParseException {
+    public List<SearchResultSchema> busqueda(String dato) throws ParseException {
         try {
 
             HttpURLConnection conn = createGETConnection();
@@ -56,7 +63,7 @@ public class Documentos {
         return null;
     }
 
-    public SearchResulSchema downloadDocument(String dato) throws ParseException {
+    public SearchResultSchema downloadDocument(String dato) throws ParseException {
         try {
 
             HttpURLConnection conn = createDownloadFileConnection(dato);
@@ -96,30 +103,30 @@ public class Documentos {
         return null;
     }
 
-    private static List<SearchResulSchema> decodeELKResponse(String elkResponse) throws ParseException {
+    private static List<SearchResultSchema> decodeELKResponse(String elkResponse) throws ParseException {
         JSONParser parser = new JSONParser();
         JSONObject json = (JSONObject) parser.parse(elkResponse);
         json = (JSONObject) json.get("hits");
         JSONArray hits = (JSONArray) json.get("hits");
-        List<SearchResulSchema> resul = new ArrayList<>();
+        List<SearchResultSchema> result = new ArrayList<>();
         for (Object hit : hits) {
             JSONObject data = (JSONObject) ((JSONObject) hit).get("_source");
             byte[] content = String.valueOf(data.get("data")).getBytes();
             byte[] content2 = Base64.getDecoder().decode(content);
             data = (JSONObject) data.get("attachment");
-            resul.add(new SearchResulSchema(String.valueOf(data.get("title")), String.valueOf(data.get("author")), content2, String.valueOf(((JSONObject) hit).get("_id")), String.valueOf(data.get("content_type"))));
+            result.add(new SearchResultSchema(String.valueOf(data.get("title")), String.valueOf(data.get("author")), content2, String.valueOf(((JSONObject) hit).get("_id")), String.valueOf(data.get("content_type"))));
         }
-        return resul;
+        return result;
     }
 
-    private static SearchResulSchema decodeFILEELKResponse(String elkResponse) throws ParseException {
+    private static SearchResultSchema decodeFILEELKResponse(String elkResponse) throws ParseException {
         JSONParser parser = new JSONParser();
         JSONObject json = (JSONObject) parser.parse(elkResponse);
             JSONObject data = (JSONObject) ((JSONObject) json).get("_source");
             byte[] content = String.valueOf(data.get("data")).getBytes();
             byte[] content2 = Base64.getDecoder().decode(content);
             data = (JSONObject) data.get("attachment");
-            return new SearchResulSchema(String.valueOf(data.get("title")), String.valueOf(data.get("author")), content2, String.valueOf(((JSONObject) json).get("_id")), String.valueOf(data.get("content_type")));
+            return new SearchResultSchema(String.valueOf(data.get("title")), String.valueOf(data.get("author")), content2, String.valueOf(((JSONObject) json).get("_id")), String.valueOf(data.get("content_type")));
         
     }
 
@@ -147,10 +154,23 @@ public class Documentos {
         conn.setRequestMethod("GET");
         String encoded = Base64.getEncoder().encodeToString((USERNAME + ":" + PASSWORD).getBytes(StandardCharsets.UTF_8));
         conn.setRequestProperty("Authorization", "Basic " + encoded);
-        conn.setDoOutput(true);
-        conn.setDoInput(true);
         conn.setRequestProperty("Content-Type", "application/json");
         conn.setRequestProperty("Accept", "application/json");
+        conn.setDoOutput(true);
+        conn.setDoInput(true);
+        return conn;
+    }
+    
+    private HttpURLConnection createPOSTConnection() throws ProtocolException, IOException, MalformedURLException {
+        URL url = new URL(HOST + "/componentes/componentes/_search");
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod("POST");
+        String encoded = Base64.getEncoder().encodeToString((USERNAME + ":" + PASSWORD).getBytes(StandardCharsets.UTF_8));
+        conn.setRequestProperty("Authorization", "Basic " + encoded);
+        conn.setRequestProperty("Content-Type", "application/json");
+        conn.setRequestProperty("Accept", "application/json");
+        conn.setDoOutput(true);
+        conn.setDoInput(true);
         return conn;
     }
 
@@ -211,5 +231,10 @@ public class Documentos {
         wr.writeBytes(data);
         wr.flush();
         wr.close();
+    }
+    
+    public static void main(String[] args){
+        Documentos d = new Documentos();
+        System.out.println(Base64.getEncoder().encodeToString((d.USERNAME + ":" + d.PASSWORD).getBytes(StandardCharsets.UTF_8)));
     }
 }

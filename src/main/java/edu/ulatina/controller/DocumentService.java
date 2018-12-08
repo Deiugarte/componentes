@@ -5,7 +5,7 @@
  */
 package edu.ulatina.controller;
 
-import edu.ulatina.controller.SearchResulSchema;
+import edu.ulatina.controller.SearchResultSchema;
 import java.util.List;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
@@ -22,7 +22,7 @@ public class DocumentService {
     private static String USERNAME = "elastic";
     private static String PASSWORD = "4y2fAlLnUWKt4SZShU6DhM1R";
     
-    public List<SearchResulSchema> getDoc(String dato) throws ParseException{
+    public List<SearchResultSchema> getDoc(String dato) throws ParseException{
         Documentos doc = new Documentos(HOST, USERNAME, PASSWORD);
         return doc.busqueda(dato);
     }

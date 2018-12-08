@@ -42,13 +42,13 @@ public class FileUploadView {
             byte[] fileData = file.getContents();
             String encodedString = Base64.encodeToString(fileData, false);
             System.out.println(doc.subida(encodedString, file.getFileName().replaceAll("\\s","")));
-            FacesMessage message = new FacesMessage("Succesful", file.getFileName() + " is uploaded.");
+            FacesMessage message = new FacesMessage("Succesful ", file.getFileName().replaceAll("\\s","") + " is uploaded.");
             FacesContext.getCurrentInstance().addMessage(null, message);
         }
     }
 
     public void handleFileUpload(FileUploadEvent event) {
-        FacesMessage msg = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
+        FacesMessage msg = new FacesMessage("Succesful ", event.getFile().getFileName() + " is uploaded.");
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 }

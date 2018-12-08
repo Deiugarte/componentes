@@ -5,7 +5,7 @@
  */
 package edu.ulatina.controller;
 
-import edu.ulatina.controller.SearchResulSchema;
+import edu.ulatina.controller.SearchResultSchema;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.List;
@@ -28,14 +28,14 @@ public class FileDownloadView {
     
     public FileDownloadView() throws ParseException {
         Documentos doc = new Documentos(HOST, USERNAME, PASSWORD);
-        List<SearchResulSchema> resul = doc.busqueda("er");
+        List<SearchResultSchema> resul = doc.busqueda("er");
         InputStream targetStream = new ByteArrayInputStream(resul.get(0).getContent());
         file = new DefaultStreamedContent(targetStream, resul.get(0).getType(), resul.get(0).getId());
     }
  
     public StreamedContent getFile(String busqueda) throws ParseException {
         Documentos doc = new Documentos(HOST, USERNAME, PASSWORD);
-        SearchResulSchema resul = doc.downloadDocument(busqueda);
+        SearchResultSchema resul = doc.downloadDocument(busqueda);
         InputStream targetStream = new ByteArrayInputStream(resul.getContent());
         file = new DefaultStreamedContent(targetStream, resul.getType(), resul.getId());
         return file;
