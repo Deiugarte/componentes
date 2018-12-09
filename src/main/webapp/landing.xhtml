@@ -113,6 +113,11 @@
                 <p:menuitem value="Delete" action="#{menuView.delete}" icon="pi pi-times" update="messages" ajax="false"/>
             </p:submenu>
         </p:submenu>
+        
+        <p:submenu label="Boot" icon="pi pi-pencil">
+            <p:menuitem value="Boot" outcome="indexBot" />
+            <p:menuitem value="Redo" url="#" icon="pi pi-angle-double-right" />
+        </p:submenu>
  
         <p:menuitem value="Quit" url="http://www.primefaces.org" icon="pi pi-times" />
  
