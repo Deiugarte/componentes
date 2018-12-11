@@ -31,7 +31,6 @@
                 }
                 function checkLoginState() {
                     FB.getLoginStatus(function (response) {
-                        ${loginController.getDataFromResponse(response)}
                         statusChangeCallback(response);
                     });
                 }
@@ -62,10 +61,14 @@
                 function login() {
 
                     FB.api('/me', function (response) {
+                        ${loginController.getDataFromResponse(response)};
+                        alert(JSON.stringify(response));   
+                        ${loginController.setUser(response.name)};
+                            //alert(${loginController.getUser()};
                         alert('Successful login for: ' + response.name);
                         document.getElementById('status').innerHTML =
                                 'Thanks for logging in, ' + response.name + '!';
-                        window.location.href = 'http://localhost:8080/proyecto/faces/landing.xhtml';                    
+                       // window.location.href = 'http://localhost:8080/proyecto/faces/landing.xhtml';                    
                     });
                 }
             </script>
