@@ -32,14 +32,8 @@ public class Documentos {
     private String HOST = "https://ada9d60a6f404a6ea207509586f2b58b.us-east-1.aws.found.io:9243";
     private String USERNAME = "elastic";
     private String PASSWORD = "4y2fAlLnUWKt4SZShU6DhM1R";
+    
     public Documentos() {
-//elastic ZWxhc3RpYw==
-//elastic:a        ZWxhc3RpYzph
-//a:elastic   YTplbGFzdGlj
-//elastic:4y2fAlLnUWKt4SZShU6DhM1R  ZWxhc3RpYzo0eTJmQWxMblVXS3Q0U1pTaFU2RGhNMVI=
-//elastic4y2fAlLnUWKt4SZShU6DhM1R  ZWxhc3RpYzR5MmZBbExuVVdLdDRTWlNoVTZEaE0xUg==
-//a:a YTph
-//b:b Yjpi
 
     }
 
@@ -160,19 +154,6 @@ public class Documentos {
         conn.setDoInput(true);
         return conn;
     }
-    
-    private HttpURLConnection createPOSTConnection() throws ProtocolException, IOException, MalformedURLException {
-        URL url = new URL(HOST + "/componentes/componentes/_search");
-        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-        conn.setRequestMethod("POST");
-        String encoded = Base64.getEncoder().encodeToString((USERNAME + ":" + PASSWORD).getBytes(StandardCharsets.UTF_8));
-        conn.setRequestProperty("Authorization", "Basic " + encoded);
-        conn.setRequestProperty("Content-Type", "application/json");
-        conn.setRequestProperty("Accept", "application/json");
-        conn.setDoOutput(true);
-        conn.setDoInput(true);
-        return conn;
-    }
 
     private HttpURLConnection createPUTFileConnection(String fileId) throws ProtocolException, IOException, MalformedURLException {
         URL url = new URL(HOST + "/componentes/componentes/" + fileId + "?pipeline=attachment");
@@ -233,8 +214,4 @@ public class Documentos {
         wr.close();
     }
     
-    public static void main(String[] args){
-        Documentos d = new Documentos();
-        System.out.println(Base64.getEncoder().encodeToString((d.USERNAME + ":" + d.PASSWORD).getBytes(StandardCharsets.UTF_8)));
-    }
 }
