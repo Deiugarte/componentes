@@ -10,27 +10,27 @@ package edu.ulatina.controller;
  * @author blaken
  */
 
-public class SearchResulSchema {
-    private String tittle;
+public class SearchResultSchema {
+    private String title;
     private String author;
     private byte[] content;
     private String _id;
     private String type;
 
-    public SearchResulSchema(String tittle, String author, byte[] content, String _id, String type) {
-        this.tittle = tittle;
+    public SearchResultSchema(String title, String author, byte[] content, String _id, String type) {
+        this.title = title;
         this.author = author;
         this.content = content;
         this._id = _id;
         this.type = type;
     }
 
-    public String getTittle() {
-        return tittle;
+    public String gettitle() {
+        return title;
     }
 
-    public void setTittle(String tittle) {
-        this.tittle = tittle;
+    public void settitle(String title) {
+        this.title = title;
     }
 
     public String getAuthor() {
@@ -68,7 +68,7 @@ public class SearchResulSchema {
 
     @Override
     public String toString() {
-        return "SearchResulSchema{" + "tittle=" + tittle + ", author=" + author  +  ", type=" + type + ", _id=" + _id + '}';
+        return "SearchResulSchema{" + "title=" + title + ", author=" + author  +  ", type=" + type + ", _id=" + _id + '}';
     }
     
     

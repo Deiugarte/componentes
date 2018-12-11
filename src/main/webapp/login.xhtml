@@ -61,10 +61,14 @@
                 function login() {
 
                     FB.api('/me', function (response) {
+                        ${loginController.getDataFromResponse(response)};
+                        alert(JSON.stringify(response));   
+                        ${loginController.setUser(response.name)};
+                            //alert(${loginController.getUser()};
                         alert('Successful login for: ' + response.name);
                         document.getElementById('status').innerHTML =
                                 'Thanks for logging in, ' + response.name + '!';
-                        window.location.href = 'http://localhost:8080/proyecto/faces/landing.xhtml';                    
+                       // window.location.href = 'http://localhost:8080/proyecto/faces/landing.xhtml';                    
                     });
                 }
             </script>
@@ -73,7 +77,8 @@
                 <div class="card-body">
                     <h5 class="login-header">Iniciar Sesion</h5>
                     <p class="card-text"><div id="status"/></p>
-                    <div class="fb-btn-wrapper" style="margin: 0 auto;text-align:center;"> <fb:login-button size="large" onlogin="checkLoginState();" autologoutlink="true"> </fb:login-button></div>
+                    <div class="fb-btn-wrapper" style="margin: 0 auto;text-align:center;"> 
+                    <fb:login-button size="large" onlogin="checkLoginState();" autologoutlink="true"> </fb:login-button></div>
 
                 </div>
             </div>

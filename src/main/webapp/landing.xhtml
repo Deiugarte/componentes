@@ -75,6 +75,121 @@
                 }
             </script>
             
+            <script>
+                window.fbAsyncInit = function () {
+                    FB.init({
+                        appId: '1943608085935991',
+                        autoLogAppEvents: true,
+                        xfbml: true,
+                        version: 'v3.2'
+                    });
+                    
+                    FB.getLoginStatus(function(response){
+                    if(response.session){
+                        alert("1");
+                         top.location.href="faces/index.xhtml";
+                    }
+        });
+        
+                FB.getLoginStatus(function(response) {
+                    alert("2");
+                        statusChangeCallback(response);
+        });   
+                };
+
+                (function (d, s, id) {
+                    alert("3");
+                    var js, fjs = d.getElementsByTagName(s)[0];
+                    if (d.getElementById(id)) {
+                        alert("4");
+                        return;
+                    }
+                    js = d.createElement(s);
+                    js.id = id;
+                    alert(js.id);
+                    js.src = "https://connect.facebook.net/en_US/sdk.js";
+                    fjs.parentNode.insertBefore(js, fjs);
+                }(document, 'script', 'facebook-jssdk'));
+                
+                function statusChangeCallback(response){
+         if(response.status === 'connected'){
+             alert("5");
+           alert("BeforeTestAPI");
+           testAPI();
+           console.log('Logged in and authenticated');
+           setElements(true);
+         } else {
+           setElements(false);
+             alert("6");
+           console.log('Not authenticated');
+         }
+       }
+
+       function checkLoginState() {
+        FB.getLoginStatus(function(response) {
+            alert("7");
+          statusChangeCallback(response);
+        });
+      }
+
+                function testAPI(){
+                    alert("testAPI");
+    FB.api('/me?fields=name,last_name,birthday,gender', function(response){
+        if(response || !response.error){
+            alert("8");
+            buildProfile(response);
+//            location.reload();
+        }
+    });
+}
+
+function buildProfile(user){
+    alert('User1: ' + user);
+//    alert('User2: ' + ${user.name});
+    alert('User3: ' + user.name);
+        let profile = 
+          '<h3>'+user.name+'</h3>'
+          +'<ul class="list-group">'+
+            '<li class="list-group-item">'+'User ID: '+user.id+'</li>'+
+            '<li class="list-group-item">'+'Name: '+user.name+'</li>'+
+            '<li class="list-group-item">'+'Last Name: '+user.last_name+'</li>'+
+            '<li class="list-group-item">'+'Birthday: '+user.birthday+'</li>'+
+            '<li class="list-group-item">'+'Gender: '+user.gender+'</li>'+
+          '</ul>'
+          ;
+
+        document.getElementById('profile').innerHTML = profile;
+      }
+
+                    
+                    function setElements(isLoggedIn){
+        if(isLoggedIn){
+            alert("9");
+          document.getElementById('logout').style.display = 'block';
+          document.getElementById('profile').style.display = 'block';
+          document.getElementById('fb-btn').style.display = 'none';
+          document.getElementById('heading').style.display = 'none';
+        } else {
+            alert("10");
+          document.getElementById('logout').style.display = 'none';
+          document.getElementById('profile').style.display = 'none';
+          document.getElementById('fb-btn').style.display = 'block';
+          document.getElementById('heading').style.display = 'block';
+        }
+      }
+
+                    function checkLoginState() {
+                        FB.getLoginStatus(function (response) {
+                            alert("11");
+                            if(response.status==="unknown"){
+                                location.reload();
+                            }
+                            statusChangeCallback(response);
+                        });
+                    }
+
+            </script>
+            
             <h:form>  
     <p:growl id="messages"/>
  

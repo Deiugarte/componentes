@@ -5,7 +5,7 @@
  */
 package edu.ulatina.controller;
 
-import edu.ulatina.controller.SearchResulSchema;
+import edu.ulatina.controller.SearchResultSchema;
 import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Level;
@@ -22,7 +22,7 @@ import org.json.simple.parser.ParseException;
 public class DocumentosResultado implements Serializable{
     
 
-    private List<SearchResulSchema> docu;
+    private List<SearchResultSchema> docu;
     private String searchValue;
     
     @ManagedProperty("#{documentService}")
@@ -32,7 +32,7 @@ public class DocumentosResultado implements Serializable{
     public void search() {
         try {
             docu = service.getDoc(searchValue);
-            for (SearchResulSchema searchResulSchema : docu) {
+            for (SearchResultSchema searchResulSchema : docu) {
                 System.out.println(searchResulSchema);
             }
         } catch (ParseException ex) {
@@ -40,7 +40,7 @@ public class DocumentosResultado implements Serializable{
         }
     }
      
-    public List<SearchResulSchema> getDocu() {
+    public List<SearchResultSchema> getDocu() {
         return docu;
     }
  
