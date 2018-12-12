@@ -64,7 +64,7 @@
 
                         document.getElementById("formId:x").value = response.name;
                         document.getElementById("fb-btn").style.display = "none";
-                        document.getElementById("continue-btn").style.display = "initial";
+                        document.getElementById("aceptar-btn").style.display = "initial";
                         document.getElementById('status').innerHTML =
                                 "Exito! Te has loggeado en FB. Presiona Aceptar para utilizar esta app con tus credenciales de FB.";
                     });
@@ -79,14 +79,14 @@
                     <p class="card-text"><div id="status"/></p>
                     <div id="fb-btn" class="fb-btn-wrapper" style="margin: 0 auto;text-align:center;"> 
                         <fb:login-button size="large" onlogin="checkLoginState();" autologoutlink="true"> </fb:login-button></div>
-                    <div id="continue-btn" style="display:none;" align="Center"> 
-                        <h:commandButton value="Aceptar" action="#{loginController.submit}" /></div>
-                </div>
-            </div>      
-
-            <h:form id="formId">
-                <h:inputHidden id="x" value="#{loginController.nombre}"/>
-            </h:form>
+                    <div id="continue-btn" align="Center"> 
+                        <h:form id="formId">
+                            <h:inputHidden id="x" value="#{loginController.nombre}"/>
+                            <div id="aceptar-btn" style="display:none"><h:commandButton value="submit" action="#{loginController.submit}"/></div>             
+                        </h:form>                        
+                    </div>
+                </div>    
+            </div>
         </h:body>
     </f:view>
 </html>
