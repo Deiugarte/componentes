@@ -61,29 +61,32 @@
                 function login() {
 
                     FB.api('/me', function (response) {
-                        ${loginController.getDataFromResponse(response)};
-                        alert(JSON.stringify(response));   
-                        ${loginController.setUser(response.name)};
-                            //alert(${loginController.getUser()};
-                        alert('Successful login for: ' + response.name);
+
+                        document.getElementById("formId:x").value = response.name;
+                        document.getElementById("fb-btn").style.display = "none";
+                        document.getElementById("aceptar-btn").style.display = "initial";
                         document.getElementById('status').innerHTML =
-                                'Thanks for logging in, ' + response.name + '!';
-                       // window.location.href = 'http://localhost:8080/proyecto/faces/landing.xhtml';                    
+                                "Exito! Te has loggeado en FB. Presiona Aceptar para utilizar esta app con tus credenciales de FB.";
                     });
                 }
             </script>
+
+
             <div class="card" style="width: 18rem;margin:25vh auto;float: none;margin-bottom: 10px;">
                 <img class="card-img-top" src="img/logo.png" alt="Card image cap"/>
                 <div class="card-body">
                     <h5 class="login-header">Iniciar Sesion</h5>
                     <p class="card-text"><div id="status"/></p>
-                    <div class="fb-btn-wrapper" style="margin: 0 auto;text-align:center;"> 
-                    <fb:login-button size="large" onlogin="checkLoginState();" autologoutlink="true"> </fb:login-button></div>
-
-                </div>
+                    <div id="fb-btn" class="fb-btn-wrapper" style="margin: 0 auto;text-align:center;"> 
+                        <fb:login-button size="large" onlogin="checkLoginState();" autologoutlink="true"> </fb:login-button></div>
+                    <div id="continue-btn" align="Center"> 
+                        <h:form id="formId">
+                            <h:inputHidden id="x" value="#{loginController.nombre}"/>
+                            <div id="aceptar-btn" style="display:none"><h:commandButton value="submit" action="#{loginController.submit}"/></div>             
+                        </h:form>                        
+                    </div>
+                </div>    
             </div>
-
-
         </h:body>
     </f:view>
 </html>
