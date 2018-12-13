@@ -39,7 +39,7 @@
 
                 window.fbAsyncInit = function () {
                     FB.init({
-                        appId: '1943608085935991',
+                        appId: '2018591588229092',
                         cookie: true, // enable cookies to allow the server to access 
                         // the session
                         xfbml: true, // parse social plugins on this page
@@ -47,7 +47,7 @@
                     });
                     
                      FB.Event.subscribe("auth.logout", function() {
-                         window.location.href = 'http://localhost:8080/proyecto/'; 
+                         window.location.href = 'http://localhost:8084/proyecto/'; 
                      });
 
                     FB.getLoginStatus(function (response) {
@@ -70,7 +70,7 @@
                         alert('Successful login for: ' + response.name);
                         document.getElementById('status').innerHTML =
                                 'Thanks for logging in, ' + response.name + '!';
-                        window.location.href = 'http://localhost:8080/proyecto/faces/landing.xhtml';                    
+                        window.location.href = 'http://localhost:8084/proyecto/faces/landing.xhtml';                    
                     });
                 }
             </script>
@@ -78,7 +78,7 @@
             <script>
                 window.fbAsyncInit = function () {
                     FB.init({
-                        appId: '1943608085935991',
+                        appId: '2018591588229092',
                         autoLogAppEvents: true,
                         xfbml: true,
                         version: 'v3.2'
@@ -228,9 +228,13 @@ function buildProfile(user){
                 <p:menuitem value="Delete" action="#{menuView.delete}" icon="pi pi-times" update="messages" ajax="false"/>
             </p:submenu>
         </p:submenu>
+        <p:submenu label="Amigos" icon="pi pi-cog">
+                <p:menuitem value="Lista amigos" action="faces/ListaAmigos.xhtml" icon="pi pi-save" update="messages"/>
+                
+        </p:submenu>
  
         <p:menuitem value="Quit" url="http://www.primefaces.org" icon="pi pi-times" />
- 
+  <p:menuitem value="publicaciones" url="http://localhost:8084/proyecto/faces/indexPublicacion.xhtml" icon="pi pi-times" />
         <f:facet name="options">
             <p:inputText style="margin:1px 10px 1px 1px;" placeholder="Search"/>
           <fb:login-button size="large" onlogin="checkLoginState();" autologoutlink="true"> </fb:login-button>

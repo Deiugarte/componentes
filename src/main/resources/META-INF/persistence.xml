@@ -3,6 +3,7 @@
   <persistence-unit name="edu.ulatina_proyecto_war_1.0-SNAPSHOTPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>edu.ulatina.controller.Persona</class>
+    <class>edu.ulatina.controller.edsfs</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://168.235.81.213:3306/componentes"/>

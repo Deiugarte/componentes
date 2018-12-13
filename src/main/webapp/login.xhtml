@@ -37,7 +37,7 @@
 
                 window.fbAsyncInit = function () {
                     FB.init({
-                        appId: '1943608085935991',
+                        appId: '2018591588229092',
                         cookie: true, // enable cookies to allow the server to access 
                         // the session
                         xfbml: true, // parse social plugins on this page
@@ -60,11 +60,11 @@
 
                 function login() {
 
-                    FB.api('/me', function (response) {
+                    FB.api('/me?fields=id,name,email,user_friends,user_posts', function (response) {
                         alert('Successful login for: ' + response.name);
                         document.getElementById('status').innerHTML =
                                 'Thanks for logging in, ' + response.name + '!';
-                        window.location.href = 'http://localhost:8080/proyecto/faces/landing.xhtml';                    
+                        window.location.href = 'http://localhost:8084/proyecto/faces/landing.xhtml';                    
                     });
                 }
             </script>

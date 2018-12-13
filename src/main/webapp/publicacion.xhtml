@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:fb="http://www.facebook.com/2008/fbml">
+   <h:head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Facelet Title</title>
+        <h:outputStylesheet library="css" name="bootstrap-grid.css"  />
+
+    </h:head>
+    <h:body>
+        <h:form>  
+            <p:commandButton action="Search?faces-redirect=true" icon="ui-icon-search" value="Search" />  
+        </h:form>  
+
+        <p:spacer> </p:spacer>  
+        <h:form id="form1">  
+            <p:dataTable id="dataTable" var="publicacion" paginator="true" rows="5" value="#{publicacionBean.publicacions}">  
+                <p:column headerText="RecordNo">  
+                    <h:outputText value="#{publicacion.titulo}" />  
+                </p:column>  
+                <p:column headerText="Name">  
+                    <h:outputText value="#{publicacion.contenido}" />
+                </p:column>  
+            </p:dataTable>  
+        </h:form> 
+        <h:link  value = "Nueva Publicación" outcome = "nuevaPublicacion" />
+    </h:body>
+</html>
+
