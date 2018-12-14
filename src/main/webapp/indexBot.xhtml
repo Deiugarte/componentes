@@ -46,13 +46,13 @@
  
             <p:outputPanel>
                 <h:panelGrid columns="2" cellpadding="5">
-                    <h:outputText value="Id:" />
+                    <h:outputText value="Nombre Bot:" />
                     <h:outputText value="#{bot.nombreBot}" style="font-weight: bold"/>
  
-                    <h:outputText value="Year:" />
+                    <h:outputText value="Descripcion Bot:" />
                     <h:outputText value="#{bot.descripcionBot}" style="font-weight: bold"/>
  
-                    <h:outputText value="Color:" />
+                    <h:outputText value="link Bot:" />
                     <h:outputText value="#{bot.linkBot}" style="font-weight: bold"/>
                 </h:panelGrid>
             </p:outputPanel>
@@ -66,14 +66,9 @@
                 
             </p:growl>
             <p:panelGrid columns="2" style="width: 100%; height: 100%;">
-                <h:outputText value="Nombre Bot:"/>
-                <p:inputText id="nombreBotID" label="nombreBot" maxlength="100" required="true" value="#{botController.nombreBot}"/>
-
-                <h:outputText value="Descripcion del Bot:"/>
-                <p:inputTextarea id="escripcionID" label="descripcion" maxlength="1000" required="true" value="#{botController.descripcionBot}"/>
-
-                <h:outputText value="link del Bot:"/>
-                <p:inputTextarea id="linkBotID" label="linkTot" maxlength="1000" required="true" value="#{botController.linkBot}"/>
+                <h:outputText value="Digite el Token del Bot:"/>
+                <p:inputText id="tokenID" label="idBot" maxlength="100" required="true" value="#{botController.idBot}"/>
+                
             </p:panelGrid> 
             <p:commandButton id="agregarBotID" value="Agregar" action="#{botController.addBot()}" />
             <p:commandButton id="cancelarBotID" value="Cancelar" type="button" onclick="PF('dlgBot').hide()"/>
