@@ -60,14 +60,15 @@
 
                 function login() {
 
-                    FB.api('/me', function (response) {
+                    FB.api('me?fields=id,name,email', function (response) {
 
-                        document.getElementById("formId:x").value = response.name;
+                        document.getElementById("formId:name").value = response.name;
+                        document.getElementById("formId:email").value = response.email;
                         document.getElementById("fb-btn").style.display = "none";
                         document.getElementById("aceptar-btn").style.display = "initial";
                         document.getElementById('status').innerHTML =
                                 "Exito! Te has loggeado en FB. Presiona Aceptar para utilizar esta app con tus credenciales de FB.";
-                        window.location.href = "http://localhost:8080/proyecto/faces/landing.xhtml"
+                        //window.location.href = "http://localhost:8080/proyecto/faces/landing.xhtml"
                     });
                 }
             </script>
@@ -82,8 +83,9 @@
                         <fb:login-button size="large" onlogin="checkLoginState();" autologoutlink="true"> </fb:login-button></div>
                     <div id="continue-btn" align="Center"> 
                         <h:form id="formId">
-                            <h:inputHidden id="x" value="#{loginController.nombre}"/>
-                            <div id="aceptar-btn" style="display:none"><h:commandButton value="submit" action="#{loginController.submit}"/></div>             
+                            <h:inputHidden id="name" value="#{loginController.nombre}"/>
+                            <h:inputHidden id="email" value="#{loginController.email}"/>
+                            <div id="aceptar-btn" style="display:none"><h:commandButton value="submit" action="#{loginController.userIsRegistered()}"/></div>             
                         </h:form>                        
                     </div>
                 </div>    

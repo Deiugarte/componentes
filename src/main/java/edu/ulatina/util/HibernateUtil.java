@@ -50,7 +50,7 @@ public abstract class HibernateUtil {
 	public void startEntityManagerFactory() {
 		if (entityManagerFactory == null) {
 			try {
-				entityManagerFactory = Persistence.createEntityManagerFactory("RedSocialComponentes");
+				entityManagerFactory = Persistence.createEntityManagerFactory("edu.ulatina_proyecto_war_1.0-SNAPSHOTPU");
 				em = entityManagerFactory.createEntityManager();
 			} catch (Exception e) {
 				e.printStackTrace();

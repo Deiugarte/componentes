@@ -3,6 +3,8 @@ package edu.ulatina.controller;
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import edu.ulatina.servicios.ServicioPersona;
+import edu.ulatina.entidades.Persona;
 
 
 @ManagedBean(name = "loginController")
@@ -25,16 +27,31 @@ public class LoginController implements Serializable {
 
     private int intentos = 0; // para bloquear cuenta...
     private String user, pass;
-    private String nombre, ape, ape2, naci, sexo, tel;
+    private String nombre, ape, ape2, naci, sexo, tel, email;
     private boolean estado = false;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
     
     public void submit() {
     System.out.println("*NOMBRE*: " + nombre);
 }
-    public void userIsRegistered(){
-        //CHECK AGAINST DB IF EMAIL ADDRESS IS REGISTERED
-        
-        /*IF IT IS REGISTERED THEN ALLOW ACCESS, OTHERWISE REDIRECT TO SIGNUP PAGE!*/
+    public void userIsRegistered() throws Exception{
+        ServicioPersona sp = new ServicioPersona();
+        try{
+            sp.getEntityManager();
+            Persona persona = sp.buscarPorCorreo(this.email);
+            System.out.println(persona.getNombre());
+          
+        } catch(Exception ex){
+            System.out.println(ex);
+            System.out.println("ERROR*");
+        }      
     }
     public void getDataFromResponse(String response) {
         System.out.println(response);
