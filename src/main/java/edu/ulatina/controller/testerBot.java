@@ -16,6 +16,7 @@ public class testerBot {
     BotService bt = new BotService();
     
     //bt.conectar();
+    bt.listAllBots();
     
 }
 }
