@@ -29,8 +29,8 @@
                         document.getElementById('status').innerHTML = 'Para continuar, inicie sesion con Facebook.';
                     }
                 }
-                
-                
+
+
                 function checkLoginState() {
                     FB.getLoginStatus(function (response) {
                         statusChangeCallback(response);
@@ -39,15 +39,15 @@
 
                 window.fbAsyncInit = function () {
                     FB.init({
-                        appId: '1943608085935991',
-                        cookie: true, // enable cookies to allow the server to access 
+                        appId: '2018591588229092',
+                        cookie: true, // enable cookies to allow the server to access
                         // the session
                         xfbml: true, // parse social plugins on this page
                         version: 'v3.2' // use graph api version 2.8
                     });
-                    
+
                      FB.Event.subscribe("auth.logout", function() {
-                         window.location.href = 'http://localhost:8080/proyecto/'; 
+                         window.location.href = 'http://localhost:8084/proyecto/';
                      });
 
                     FB.getLoginStatus(function (response) {
@@ -70,31 +70,31 @@
                         console.log('Successful login for: ' + response.name);
                         document.getElementById('status').innerHTML =
                                 'Thanks for logging in, ' + response.name + '!';
-                        window.location.href = 'http://localhost:8080/proyecto/faces/landing.xhtml';                    
+                        window.location.href = 'http://localhost:8084/proyecto/faces/landing.xhtml';
                     });
                 }
             </script>
-            
+
             <script>
                 window.fbAsyncInit = function () {
                     FB.init({
-                        appId: '1943608085935991',
+                        appId: '2018591588229092',
                         autoLogAppEvents: true,
                         xfbml: true,
                         version: 'v3.2'
                     });
-                    
+
                     FB.getLoginStatus(function(response){
                     if(response.session){
                         console.log("1");
                          top.location.href="faces/index.xhtml";
                     }
         });
-        
+
                 FB.getLoginStatus(function(response) {
                     console.log("2");
                         statusChangeCallback(response);
-        });   
+        });
                 };
 
                 (function (d, s, id) {
@@ -110,7 +110,7 @@
                     js.src = "https://connect.facebook.net/en_US/sdk.js";
                     fjs.parentNode.insertBefore(js, fjs);
                 }(document, 'script', 'facebook-jssdk'));
-                
+
                 function statusChangeCallback(response){
          if(response.status === 'connected'){
              console.log("5");
@@ -147,7 +147,7 @@ function buildProfile(user){
     console.log('User1: ' + user);
 //    console.log('User2: ' + ${user.name});
     console.log('User3: ' + user.name);
-        let profile = 
+        let profile =
           '<h3>'+user.name+'</h3>'
           +'<ul class="list-group">'+
             '<li class="list-group-item">'+'User ID: '+user.id+'</li>'+
@@ -161,7 +161,7 @@ function buildProfile(user){
         document.getElementById('profile').innerHTML = profile;
       }
 
-                    
+
                     function setElements(isLoggedIn){
         if(isLoggedIn){
             console.log("9");
@@ -191,10 +191,10 @@ function buildProfile(user){
                     }
 
             </script>
-            
-            <h:form>  
+
+            <h:form>
     <p:growl id="messages"/>
- 
+
     <p:menubar>
         <p:submenu label="File" icon="pi pi-file">
             <p:submenu label="New" icon="pi pi-briefcase">
@@ -205,12 +205,12 @@ function buildProfile(user){
             <p:separator />
             <p:menuitem value="Quit" url="#" />
         </p:submenu>
- 
+
         <p:submenu label="Edit" icon="pi pi-pencil">
             <p:menuitem value="Undo" url="#" icon="pi pi-angle-double-left" />
             <p:menuitem value="Redo" url="#" icon="pi pi-angle-double-right" />
         </p:submenu>
- 
+
         <p:submenu label="Help" icon="pi pi-question">
             <p:menuitem value="Contents" url="#" />
             <p:submenu label="Search" icon="pi pi-search">
@@ -220,7 +220,7 @@ function buildProfile(user){
                 <p:menuitem value="File" url="#" />
             </p:submenu>
         </p:submenu>
- 
+
         <p:submenu label="Actions" icon="pi pi-cog">
             <p:submenu label="Ajax" icon="pi pi-refresh">
                 <p:menuitem value="Save" action="#{menuView.save}" icon="pi pi-save" update="messages"/>
@@ -230,14 +230,16 @@ function buildProfile(user){
                 <p:menuitem value="Delete" action="#{menuView.delete}" icon="pi pi-times" update="messages" ajax="false"/>
             </p:submenu>
         </p:submenu>
-        
+
         <p:submenu label="Boot" icon="pi pi-pencil">
             <p:menuitem value="Boot" outcome="indexBot" />
             <p:menuitem value="Redo" url="#" icon="pi pi-angle-double-right" />
+        <p:submenu label="Amigos" icon="pi pi-cog">
+                <p:menuitem value="Lista amigos" action="faces/ListaAmigos.xhtml" icon="pi pi-save" update="messages"/>
         </p:submenu>
- 
+
         <p:menuitem value="Quit" url="http://www.primefaces.org" icon="pi pi-times" />
- 
+  <p:menuitem value="publicaciones" url="http://localhost:8084/proyecto/faces/indexPublicacion.xhtml" icon="pi pi-times" />
         <f:facet name="options">
             <p:inputText style="margin:1px 10px 1px 1px;" placeholder="Search"/>
           <fb:login-button size="large" onlogin="checkLoginState();" autologoutlink="true"> </fb:login-button>
@@ -248,4 +250,3 @@ function buildProfile(user){
         </h:body>
     </f:view>
 </html>
-

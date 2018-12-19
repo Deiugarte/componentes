@@ -37,8 +37,8 @@
 
                 window.fbAsyncInit = function () {
                     FB.init({
-                        appId: '1943608085935991',
-                        cookie: true, // enable cookies to allow the server to access 
+                        appId: '2018591588229092',
+                        cookie: true, // enable cookies to allow the server to access
                         // the session
                         xfbml: true, // parse social plugins on this page
                         version: 'v3.2' // use graph api version 2.8
@@ -79,18 +79,17 @@
                 <div class="card-body">
                     <h5 class="login-header">Iniciar Sesion</h5>
                     <p class="card-text"><div id="status"/></p>
-                    <div id="fb-btn" class="fb-btn-wrapper" style="margin: 0 auto;text-align:center;"> 
+                    <div id="fb-btn" class="fb-btn-wrapper" style="margin: 0 auto;text-align:center;">
                         <fb:login-button size="large" onlogin="checkLoginState();" autologoutlink="true"> </fb:login-button></div>
-                    <div id="continue-btn" align="Center"> 
+                    <div id="continue-btn" align="Center">
                         <h:form id="formId">
                             <h:inputHidden id="name" value="#{loginController.nombre}"/>
                             <h:inputHidden id="email" value="#{loginController.email}"/>
-                            <div id="aceptar-btn" style="display:none"><h:commandButton value="submit" action="#{loginController.userIsRegistered()}"/></div>             
-                        </h:form>                        
+                            <div id="aceptar-btn" style="display:none"><h:commandButton value="submit" action="#{loginController.userIsRegistered()}"/></div>
+                        </h:form>
                     </div>
-                </div>    
+                </div>
             </div>
         </h:body>
     </f:view>
 </html>
-
