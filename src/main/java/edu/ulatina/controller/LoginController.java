@@ -41,17 +41,20 @@ public class LoginController implements Serializable {
     public void submit() {
     System.out.println("*NOMBRE*: " + nombre);
 }
-    public void userIsRegistered() throws Exception{
+    public String userIsRegistered() throws Exception{
         ServicioPersona sp = new ServicioPersona();
         try{
             sp.getEntityManager();
-            Persona persona = sp.buscarPorCorreo(this.email);
-            System.out.println(persona.getNombre());
+            if(sp.buscarPorCorreo(this.email).getCorreo() != null){
+                return "landing";                
+            }
+            return "signUp";
           
         } catch(Exception ex){
             System.out.println(ex);
             System.out.println("ERROR*");
         }      
+        return "Error";
     }
     public void getDataFromResponse(String response) {
         System.out.println(response);

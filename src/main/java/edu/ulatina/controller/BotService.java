@@ -15,8 +15,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
 /**
  *
  * @author Luis
@@ -31,8 +29,8 @@ public class BotService {
     private String PASS = "componentes";
     private Connection conn = null;
     private Statement stmt = null;
-    
-       /* public void conectar() {
+
+    /* public void conectar() {
 
         try {
             //STEP 1: Register JDBC driver
@@ -46,42 +44,48 @@ public class BotService {
             System.out.println("No se puede conectar...");
         }
     }*/
-
     public List<Bot> listAllBots() {
-        String SQL = "SELECT * FROM listabot;";
+        String SQL = "SELECT * FROM listaBot;";
         List<Bot> bots = new ArrayList<>();
 
-        try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-                PreparedStatement prepStmt = conn.prepareStatement(SQL);
-                ResultSet rs = prepStmt.executeQuery()) {
-
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            PreparedStatement prepStmt = conn.prepareStatement(SQL);
+            ResultSet rs = prepStmt.executeQuery();
+            System.out.println(conn.getSchema());
             while (rs.next()) {
                 Bot bot = new Bot();
                 bot.setIdBot(rs.getString("idBot"));
                 bot.setNombreBot(rs.getString("nombreBot"));
                 bot.setDescripcionBot(rs.getString("descripcion"));
+                bot.setDescripcionBot(rs.getString("persona_idPersona"));
                 bot.setLinkBot(rs.getString("linkbot"));
                 bots.add(bot);
             }
             return bots;
 
         } catch (Exception ex) {
-            System.out.println("No se pudieron cargar las preguntas.");
+            System.out.println("No se pudieron cargar los bots.");
             ex.printStackTrace();
         }
         return null;
     }
 
     public boolean addBot(Bot bot) {
-        String SQL = "INSERT INTO listabot (nombreBot,descripcion,linkBot) "
-                + "VALUES (?, ?, ?);";
+        String SQL = "INSERT INTO listaBot (idBot,nombreBot,descripcion,persona_idPersona,linkBot) "
+                + "VALUES (?, ?, ?, ?, ?);";
 
-        try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-                PreparedStatement prepStmt = conn.prepareStatement(SQL)) {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            PreparedStatement prepStmt = conn.prepareStatement(SQL);
 
-            prepStmt.setString(1, bot.getNombreBot());
-            prepStmt.setString(2, bot.getDescripcionBot());
-            prepStmt.setString(3, bot.getLinkBot());
+            prepStmt.setString(1, bot.getIdBot());
+            prepStmt.setString(2, bot.getNombreBot());
+            prepStmt.setString(3, bot.getDescripcionBot());
+            prepStmt.setString(4, bot.getPersona_idPersona());
+            prepStmt.setString(5, bot.getLinkBot());
             prepStmt.executeUpdate();
             return true;
 
@@ -89,7 +93,7 @@ public class BotService {
             ex.printStackTrace();
             return false;
         } catch (Exception e) {
-            System.out.println("No pudo insertar la pregunta.");
+            System.out.println("No pudo insertar el bot.");
             e.printStackTrace();
         }
         return false;

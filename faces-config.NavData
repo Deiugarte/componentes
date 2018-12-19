@@ -12,6 +12,7 @@
         <Node id="landing.xhtml" x="900" y="300" zoom="true"/>
         <Node id="TEST_ANTONIO.xhtml" x="1150" y="150" zoom="true"/>
         <Node id="Bienvenida.xhtml" x="150" y="300" zoom="true"/>
+
         <Node id="indexBot.xhtml" x="400" y="600" zoom="true"/>
     </Scope>
     <Scope Scope="All Faces Configurations"/>
