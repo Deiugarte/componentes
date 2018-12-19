@@ -184,7 +184,7 @@
                         if (response.status === "unknown") {
                             location.reload();
                         } else if (response.status === "not_authorized") {
-                            window.location.href = "http://localhost:8080/proyecto"
+                            window.location.href = "http://localhost:8084/proyecto"
                         }
                         statusChangeCallback(response);
                     });
@@ -197,7 +197,7 @@
 
                 <p:menubar>
                     <p:submenu label="Archivos" icon="pi pi-file">
-                        <p:menuitem value="Subir archivo" url="faces/upload.xhtml" />
+                        <p:menuitem value="Subir archivo" url="upload.xhtml" />
                     </p:submenu>
 
                     <p:submenu label="Actions" icon="pi pi-cog">
@@ -214,9 +214,9 @@
                         <p:menuitem value="Bot" outcome="indexBot" />
                     </p:submenu>
                     <p:submenu label="Amigos" icon="pi pi-cog">
-                        <p:menuitem value="Lista amigos" action="faces/ListaAmigos.xhtml" icon="pi pi-save" update="messages"/>
+                        <p:menuitem value="Lista amigos" url="ListaAmigos.xhtml" icon="pi pi-save" update="messages"/>
                     </p:submenu>
-                    <p:menuitem value="publicaciones" url="http://localhost:8084/proyecto/faces/indexPublicacion.xhtml" icon="pi pi-times" />
+                    <p:menuitem value="publicaciones" url="indexPublicacion.xhtml" icon="pi pi-times" />
                     <f:facet name="options">
                         <p:inputText style="margin:1px 10px 1px 1px;" placeholder="Search"/>
                         <fb:login-button size="large" onlogin="checkLoginState();" autologoutlink="true"> </fb:login-button>
