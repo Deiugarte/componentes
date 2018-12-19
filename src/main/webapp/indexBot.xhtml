@@ -7,19 +7,19 @@
     <h:head>
         <title>Facelet Title</title>
     </h:head>
-    <h:body>
+    <h:body> 
         <h:form>  
             <p:menubar>
                 <p:menuitem value="Inicio" icon="ui-icon-home" outcome="index"/>
-                <p:menuitem value="Tutorial" icon="ui-icon-home" outcome="Tutorial"/>
+                <p:menuitem value="Tutorial" icon="ui-icon-pencil" outcome="Tutorial"/>
+                <p:menuitem value="Agregar Bot" icon="ui-icon-pencil" oncomplete="PF('dlgBot').show()"/>
             </p:menubar>
         </h:form>
 
         <h:form> 
             <p:growl id="growl" life="2000" />
 
-            <p:commandButton value="Agregar Boot" id="addBot" update="growl" action="#{buttonView.buttonAction}" style="margin-right:20px;" styleClass="ui-priority-primary" 
-                             oncomplete="PF('dlgBot').show()"/>
+            
         </h:form>
         <style type="text/css">
             .value {
@@ -36,7 +36,7 @@
 
 
         <h:form> 
-            <p:dataScroller value="#{botController.bots}" var="bot" chunkSize="10" mode="inline" scrollHeight="500">
+            <p:dataScroller value="#{botController.bots}" var="bot" chunkSize="10" mode="inline" scrollHeight="600">
         <f:facet name="header">
             Tus bots
         </f:facet>
