@@ -59,7 +59,7 @@ public class BotService {
                 bot.setIdBot(rs.getString("idBot"));
                 bot.setNombreBot(rs.getString("nombreBot"));
                 bot.setDescripcionBot(rs.getString("descripcion"));
-                bot.setDescripcionBot(rs.getString("persona_idPersona"));
+                bot.setPersona_idPersona(rs.getString("persona_idPersona"));
                 bot.setLinkBot(rs.getString("linkbot"));
                 bots.add(bot);
             }
