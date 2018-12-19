@@ -46,6 +46,9 @@
  
             <p:outputPanel>
                 <h:panelGrid columns="2" cellpadding="5">
+                    <h:outputText value="Id Bot:" />
+                    <h:outputText value="#{bot.idBot}" style="font-weight: bold"/>
+                    
                     <h:outputText value="Nombre Bot:" />
                     <h:outputText value="#{bot.nombreBot}" style="font-weight: bold"/>
  
@@ -64,7 +67,7 @@
     </p:dataScroller>
 </h:form>
         <p:dialog id="dialogBot" modal="true" responsive="true" closeOnEscape="true" widgetVar="dlgBot" height="300" 
-              width="550" minHeight="350" minWidth="550" showEffect="fade" hideEffect="fade" header="ingresar Bot">
+              width="410" minHeight="350" minWidth="550" showEffect="fade" hideEffect="fade" header="ingresar Bot">
         <h:form id="formBot">
             <p:growl id="growl" showDetail="true" life="2000">
                 
@@ -79,9 +82,6 @@
                 
                 <h:outputText value="Digite la descripcion del bot:"/>
                 <p:inputText id="descripcionID" label="descripcionBot" maxlength="100" required="true" value="#{botController.descripcionBot}"/>
-                
-                <h:outputText value="Digite el id de la persona:"/>
-                <p:inputText id="personaID" label="persona_idPersona" maxlength="100" required="true" value="#{botController.persona_idPersona}"/>
                 
                 <h:outputText value="Digite el link del bot:"/>
                 <p:inputText id="linkID" label="linkBot" maxlength="100" required="true" value="#{botController.linkBot}"/>

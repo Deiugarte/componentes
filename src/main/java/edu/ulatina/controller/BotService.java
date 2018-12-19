@@ -59,7 +59,6 @@ public class BotService {
                 bot.setIdBot(rs.getString("idBot"));
                 bot.setNombreBot(rs.getString("nombreBot"));
                 bot.setDescripcionBot(rs.getString("descripcion"));
-                bot.setPersona_idPersona(rs.getString("persona_idPersona"));
                 bot.setLinkBot(rs.getString("linkbot"));
                 bots.add(bot);
             }
@@ -73,8 +72,8 @@ public class BotService {
     }
 
     public boolean addBot(Bot bot) {
-        String SQL = "INSERT INTO listaBot (idBot,nombreBot,descripcion,persona_idPersona,linkBot) "
-                + "VALUES (?, ?, ?, ?, ?);";
+        String SQL = "INSERT INTO listaBot (idBot,nombreBot,descripcion,linkBot) "
+                + "VALUES (?, ?, ?, ?);";
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -84,8 +83,7 @@ public class BotService {
             prepStmt.setString(1, bot.getIdBot());
             prepStmt.setString(2, bot.getNombreBot());
             prepStmt.setString(3, bot.getDescripcionBot());
-            prepStmt.setString(4, bot.getPersona_idPersona());
-            prepStmt.setString(5, bot.getLinkBot());
+            prepStmt.setString(4, bot.getLinkBot());
             prepStmt.executeUpdate();
             return true;
 

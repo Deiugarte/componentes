@@ -26,7 +26,6 @@ public class BotController implements Serializable {
     private String idBot;
     private String nombreBot;
     private String descripcionBot;
-    private String persona_idPersona;
     private String linkBot;
     private List<Bot> bots = new ArrayList<>();
     // private List<Bot> filteredBots = new ArrayList<>();
@@ -54,14 +53,12 @@ public class BotController implements Serializable {
         b.setIdBot(idBot);
         b.setNombreBot(nombreBot);
         b.setDescripcionBot(descripcionBot);
-        b.setPersona_idPersona(persona_idPersona);
         b.setLinkBot(linkBot);
         new BotService().addBot(b);
         // PrimeFaces.current().executeScript("PF('dlgBot').hide()");
         idBot = "";
         nombreBot = "";
         descripcionBot = "";
-        persona_idPersona = "";
         linkBot = "";
         init();
         //pageRefresh();
@@ -91,13 +88,6 @@ public class BotController implements Serializable {
         this.descripcionBot = descripcionBot;
     }
 
-    public String getPersona_idPersona() {
-        return persona_idPersona;
-    }
-
-    public void setPersona_idPersona(String persona_idPersona) {
-        this.persona_idPersona = persona_idPersona;
-    }
 
     public String getLinkBot() {
         return linkBot;
