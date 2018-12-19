@@ -5,13 +5,20 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Facelet Title</title>
+        <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
+                <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+                <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+                <link rel="stylesheet" href="css/styles.css"/>
+                <title>Upload</title>
+            </f:facet>
     </h:head>
     <h:body>
         <h:form>  
             <p:menubar>
-                <p:menuitem value="Inicio" icon="ui-icon-home" outcome="index"/>
-                <p:menuitem value="Tutorial" icon="ui-icon-home" outcome="Tutorial"/>
+                <p:menuitem value="Inicio" icon="ui-icon-home" action="faces/landing.xhtml"/>
+                <p:menuitem value="Tutorial" icon="ui-icon-home" action="faces/Tutorial.xhtml"/>
             </p:menubar>
         </h:form>
 

@@ -75,6 +75,11 @@ and open the template in the editor.
                 
         </script>
 
+        <h:form>  
+            <p:menubar>
+                <p:menuitem value="Inicio" icon="ui-icon-home" action="faces/landing.xhtml"/>
+            </p:menubar>
+        </h:form>
         <style type="text/css">
      .ui-grid-responsive  {
         text-align: center;
@@ -82,7 +87,7 @@ and open the template in the editor.
 </style>
 
  
-<h3>Amigos</h3>
+<p:panel><h3>Amigos</h3></p:panel>
 <p:panelGrid columns="3" layout="grid">            
     <h:outputText value="Content" /> 
     <h:outputText value="Content" /> 
