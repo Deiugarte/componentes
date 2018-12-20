@@ -5,8 +5,7 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:fb="http://www.facebook.com/2008/fbml">
+      xmlns:p="http://primefaces.org/ui">
     <f:view contentType="text/html">
         <h:head>
             <f:facet name="first">
@@ -48,10 +47,10 @@
 
 
                 function listFriend() {
-                    FB.api('/me/friends', 'GET', {fields: 'summary'}, function (response) {
+                    FB.api('/me/friends', function (response) {
                         if (response || !response.error) {
                             //console.log(JSON.stringify(response.summary));
-                            console.log(response.summary);
+                            console.log(JSON.stringify(response.data));
                         } else {
                             console.log("algo ha salido mal");
                         }
