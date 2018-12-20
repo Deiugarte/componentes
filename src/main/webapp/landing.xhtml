@@ -26,7 +26,7 @@
                     if (response.status === 'connected') {
                         login();
                     } else {                        
-                        window.location.href = "http://localhost:9080/proyecto/faces/login.xhtml";                       
+                        window.location.href = "http://localhost:9080/proyecto/faces/login.xhtml";                 
                     }
                 }
 
@@ -71,6 +71,7 @@
                         document.getElementById('status').innerHTML =
                                 'Thanks for logging in, ' + response.name + '!';
                         window.location.href = 'http://localhost:8080/proyecto/faces/landing.xhtml';
+
                     });
                 }
             </script>
@@ -100,6 +101,7 @@
                         }
                         statusChangeCallback(response);
                         
+
                     });
                 };
 
@@ -191,6 +193,7 @@
                             location.reload();
                         } else if (response.status === "not_authorized") {
                             window.location.href = "http://localhost:8080/proyecto"
+
                         }
                         statusChangeCallback(response);
                     });
@@ -198,56 +201,25 @@
 
             </script>
 
-            <h:form>  
+
+            <h:form>
                 <p:growl id="messages"/>
 
                 <p:menubar>
-                    <p:submenu label="File" icon="pi pi-file">
-                        <p:submenu label="New" icon="pi pi-briefcase">
-                            <p:menuitem value="Project" url="#" />
-                            <p:menuitem value="Other" url="#" />
-                        </p:submenu>
-                        <p:menuitem value="Open" url="#" />
-                        <p:separator />
-                        <p:menuitem value="Quit" url="#" />
+                    <p:submenu label="Archivos" icon="pi pi-file">
+                        <p:menuitem value="Subir archivo" url="upload.xhtml" />
                     </p:submenu>
 
-                    <p:submenu label="Edit" icon="pi pi-pencil">
-                        <p:menuitem value="Undo" url="#" icon="pi pi-angle-double-left" />
-                        <p:menuitem value="Redo" url="#" icon="pi pi-angle-double-right" />
+                    <p:submenu label="Bot" icon="pi pi-pencil">
+                        <p:menuitem value="Bot" outcome="indexBot" />
                     </p:submenu>
-
-                    <p:submenu label="Help" icon="pi pi-question">
-                        <p:menuitem value="Contents" url="#" />
-                        <p:submenu label="Search" icon="pi pi-search">
-                            <p:submenu label="Text">
-                                <p:menuitem value="Workspace" url="#" />
-                            </p:submenu>
-                            <p:menuitem value="File" url="#" />
-                        </p:submenu>
+                    <p:submenu label="Amigos" icon="pi pi-cog">
+                        <p:menuitem value="Lista amigos" url="ListaAmigos.xhtml" icon="pi pi-save" update="messages"/>
                     </p:submenu>
-
-                    <p:submenu label="Actions" icon="pi pi-cog">
-                        <p:submenu label="Ajax" icon="pi pi-refresh">
-                            <p:menuitem value="Save" action="#{menuView.save}" icon="pi pi-save" update="messages"/>
-                            <p:menuitem value="Update" action="#{menuView.update}" icon="pi pi-refresh" update="messages"/>
-                        </p:submenu>
-                        <p:submenu label="Non-Ajax" icon="pi pi-clone">
-                            <p:menuitem value="Delete" action="#{menuView.delete}" icon="pi pi-times" update="messages" ajax="false"/>
-                        </p:submenu>
-                    </p:submenu>
-
-                    <p:submenu label="Boot" icon="pi pi-pencil">
-                        <p:menuitem value="Boot" outcome="indexBot" />
-                        <p:menuitem value="Redo" url="#" icon="pi pi-angle-double-right" />
-                    </p:submenu>
-
-                    <p:menuitem value="Quit" url="http://www.primefaces.org" icon="pi pi-times" />
-
+                    <p:menuitem value="publicaciones" url="indexPublicacion.xhtml" icon="pi pi-times" />
                     <f:facet name="options">
                         <p:inputText style="margin:1px 10px 1px 1px;" placeholder="Search"/>
                         <fb:login-button size="large" onlogin="checkLoginState();" autologoutlink="true"> </fb:login-button>
-                        
                     </f:facet>
                 </p:menubar>
             </h:form>

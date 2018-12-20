@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:fb="http://www.facebook.com/2008/fbml">
+    <f:view contentType="text/html">     
+        <h:head>
+        <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
+                <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+                <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+                <link rel="stylesheet" href="css/styles.css"/>
+                <title>Publicaciones</title>
+        </f:facet>
+    </h:head>
+    <h:body>
+        <script>
+            window.fbAsyncInit = function () {
+                FB.init({
+                    appId: '1943608085935991',
+                    autoLogAppEvents: true,
+                    xfbml: true,
+                    version: 'v3.2'
+                });
+            };
+
+            
+            (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/es_ES/sdk.js#xfbml=1;version=v3.2;appId=2018591588229092;autoLogAppEvents=1';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+                </script>
+        <h:form>  
+            <p:menubar>
+                <p:menuitem value="Inicio" icon="ui-icon-home" url="landing.xhtml"/>
+            </p:menubar>
+        </h:form>
+        <h:form>  
+            <p:commandButton action="Search?faces-redirect=true" icon="ui-icon-search" value="Search" />  
+        </h:form>  
+
+        <p:spacer> </p:spacer>  
+        <h:form id="form1">  
+            <p:dataTable id="dataTable" var="publicacion" paginator="true" rows="5" value="#{publicacionBean.publicacions}"> 
+                <p:column headerText="RecordNo">  
+                    <h:outputText value="#{publicacion.idPublicacion}" />  
+                </p:column>  
+                <p:column headerText="Título">  
+                    <h:outputText value="#{publicacion.titulo}" />  
+                </p:column>  
+                <p:column headerText="Name">  
+                    <h:outputText value="#{publicacion.contenido}" />
+                </p:column>
+                <p:column headerText="Compartir">
+                    <div class="fb-share-button" data-href="http://localhost:8084/ProyectoComponentes/" data-layout="button" data-size="small" data-mobile-iframe="true"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A8084%2FProyectoComponentes%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Compartir</a></div>
+                </p:column>
+                <p:commandButton icon="ui-icon-plusthick" update=":form1:dataTable" type="summit" value="delete" action="#{publicacionBean.deletePublicacion(publicacion.idPublicacion)}" />
+            </p:dataTable>  
+        </h:form>  
+        <br/>
+        <p:fieldset legend="Nueva Publicación" toggleable="true" toggleSpeed="500" collapsed="true" >
+            <h:form >  
+                <p>Título: </p> 
+                <p:inputText value="#{publicacionBean.newpublicacion.titulo}" /> 
+                <p>Contenido:</p>
+                <p:inputTextarea value="#{publicacionBean.newpublicacion.contenido}" rows="5" cols="30" counter="display" maxlength="500" counterTemplate="{0} characters remaining." autoResize="false" />
+                <br/>
+                <h:outputText id="display" />
+                <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">    
+                </h:panelGrid>  
+
+                <p:commandButton icon="ui-icon-plusthick" update=":form1:dataTable" type="submit" value="Send" action="#{publicacionBean.addPublicacion()}" />
+               <div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-size="small" data-mobile-iframe="false"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://ulatina.ac.cr/la-universidad/tecnologia-de-punta/educacion-virtual/" class="fb-xfbml-parse-ignore">Compartir</a></div>
+            </h:form>  
+        </p:fieldset>
+    </h:body>
+        </f:view>
+</html>
+

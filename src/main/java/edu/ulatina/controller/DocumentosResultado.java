@@ -20,6 +20,7 @@ import org.json.simple.parser.ParseException;
 @ManagedBean
 @SessionScoped
 public class DocumentosResultado implements Serializable{
+
     
 
     private List<SearchResultSchema> docu;

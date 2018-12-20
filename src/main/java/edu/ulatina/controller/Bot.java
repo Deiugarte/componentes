@@ -5,67 +5,28 @@ package edu.ulatina.controller;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Mariela Giraldo
  */
 public class Bot {
-    
-   private String color;
-    private String year;
-    private int id;
-    private int price;
+
     private String idBot;
     private String nombreBot;
     private String descripcionBot;
+    private String persona_idPersona;
     private String linkBot;
 
     public Bot() {
 
     }
 
-    public Bot(String color, String year, int id, int price,String idBot, String nombreBot, String descripcionBot, String linkBot) {
-        this.color = color;
-        this.year = year;
-        this.id = id;
-        this.price = price;
+    public Bot(String idBot, String nombreBot, String descripcionBot, String persona_idPersona, String linkBot) {
         this.idBot = idBot;
         this.nombreBot = nombreBot;
         this.descripcionBot = descripcionBot;
+        this.persona_idPersona = persona_idPersona;
         this.linkBot = linkBot;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
-
-    public String getYear() {
-        return year;
-    }
-
-    public void setYear(String year) {
-        this.year = year;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
     }
 
     public String getIdBot() {
@@ -90,6 +51,14 @@ public class Bot {
 
     public void setDescripcionBot(String descripcionBot) {
         this.descripcionBot = descripcionBot;
+    }
+
+    public String getPersona_idPersona() {
+        return persona_idPersona;
+    }
+
+    public void setPersona_idPersona(String persona_idPersona) {
+        this.persona_idPersona = persona_idPersona;
     }
 
     public String getLinkBot() {

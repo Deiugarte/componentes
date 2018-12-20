@@ -50,11 +50,12 @@ public class LoginController implements Serializable {
                 return "landing";                
             }
             return "error";
+
           
         } catch(Exception ex){
             System.out.println(ex);
             System.out.println("ERROR*");
-        }      
+        }    
         return "error";
     }
     public void getDataFromResponse(String response) {
