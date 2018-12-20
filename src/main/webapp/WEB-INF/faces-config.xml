@@ -17,4 +17,16 @@
             <to-view-id>/index.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/login.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>landing</from-outcome>
+            <to-view-id>/landing.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>error</from-outcome>
+            <to-view-id>/error.xhtml</to-view-id>
+            <redirect>/error.xhtml</redirect>
+        </navigation-case>
+    </navigation-rule>
 </faces-config>

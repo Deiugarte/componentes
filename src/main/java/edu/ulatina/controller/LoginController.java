@@ -39,7 +39,7 @@ public class LoginController implements Serializable {
     }
     
     public void submit() {
-    System.out.println("*NOMBRE*: " + nombre);
+    System.out.println("*NOMBRE*: " + this.nombre);
 }
     public String userIsRegistered() throws Exception{
    
