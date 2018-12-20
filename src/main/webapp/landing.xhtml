@@ -70,7 +70,7 @@
                         console.log('Successful login for: ' + response.name);
                         document.getElementById('status').innerHTML =
                                 'Thanks for logging in, ' + response.name + '!';
-                        window.location.href = 'http://localhost:8080/proyecto/faces/landing.xhtml';
+                        window.location.href = "landing.xhtml";
 
                     });
                 }
@@ -88,7 +88,7 @@
                     FB.getLoginStatus(function (response) {
                         if (response.session) {
                             console.log("1");
-                            top.location.href = "faces/index.xhtml";
+                            top.location.href = "index.xhtml";
                         }
                     });
 
@@ -97,7 +97,7 @@
                         console.log("COCAIN" + JSON.stringify(response));
                         if(response.status === 'unknown'){
                             console.log("YEY");
-                            window.location.href = "http://localhost:9080/proyecto"
+                            window.location.href = "http://localhost:9080/proyecto";
                         }
                         statusChangeCallback(response);
                         
@@ -211,7 +211,7 @@
                     </p:submenu>
 
                     <p:submenu label="Bot" icon="pi pi-pencil">
-                        <p:menuitem value="Bot" outcome="indexBot" />
+                        <p:menuitem value="Bot" url="indexBot.xhtml" />
                     </p:submenu>
                     <p:submenu label="Amigos" icon="pi pi-cog">
                         <p:menuitem value="Lista amigos" url="ListaAmigos.xhtml" icon="pi pi-save" update="messages"/>
