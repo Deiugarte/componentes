@@ -29,4 +29,12 @@
             <redirect>/error.xhtml</redirect>
         </navigation-case>
     </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/error.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>landing</from-outcome>
+            <to-view-id>/landing.xhtml</to-view-id>
+            <redirect>/landing.xhtml</redirect>
+        </navigation-case>
+    </navigation-rule>
 </faces-config>
