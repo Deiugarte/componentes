@@ -28,7 +28,7 @@ public class BotController implements Serializable {
     private String descripcionBot;
     private String persona_idPersona;
     private String linkBot;
-    private List<Bot> bots = new ArrayList<>();
+    private List<Bot> bots = new ArrayList();
     // private List<Bot> filteredBots = new ArrayList<>();
 
     /* @PostConstruct
@@ -54,7 +54,7 @@ public class BotController implements Serializable {
         b.setIdBot(idBot);
         b.setNombreBot(nombreBot);
         b.setDescripcionBot(descripcionBot);
-        b.setPersona_idPersona(persona_idPersona);
+        //b.setPersona_idPersona(persona_idPersona);
         b.setLinkBot(linkBot);
         new BotService().addBot(b);
         // PrimeFaces.current().executeScript("PF('dlgBot').hide()");

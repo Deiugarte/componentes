@@ -46,7 +46,7 @@ public class BotService {
     }*/
     public List<Bot> listAllBots() {
         String SQL = "SELECT * FROM listaBot;";
-        List<Bot> bots = new ArrayList<>();
+        List<Bot> bots = new ArrayList();
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -84,7 +84,7 @@ public class BotService {
             prepStmt.setString(1, bot.getIdBot());
             prepStmt.setString(2, bot.getNombreBot());
             prepStmt.setString(3, bot.getDescripcionBot());
-            prepStmt.setString(4, bot.getPersona_idPersona());
+           // prepStmt.setString(4, bot.getPersona_idPersona());
             prepStmt.setString(5, bot.getLinkBot());
             prepStmt.executeUpdate();
             return true;

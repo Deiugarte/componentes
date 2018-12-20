@@ -21,9 +21,11 @@ import org.primefaces.util.Base64;
 @ManagedBean
 public class FileUploadView {
 
+
     private static String HOST = "https://7194ec6edb754dd598f032c609d1291a.us-east-1.aws.found.io:9243";
     private static String USERNAME = "elastic";
     private static String PASSWORD = "L0zHI1afvgHoL5JWiAlrfY2D";
+
 
     private UploadedFile file;
 

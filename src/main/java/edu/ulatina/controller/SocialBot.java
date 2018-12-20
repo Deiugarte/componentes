@@ -51,7 +51,7 @@ public class SocialBot extends TelegramLongPollingBot {
 
             ReplyKeyboardMarkup keyboardMarkup = new ReplyKeyboardMarkup();
             // Create the keyboard (list of keyboard rows)
-            List<KeyboardRow> keyboard = new ArrayList<>();
+            List<KeyboardRow> keyboard = new ArrayList();
             // Crear keyboard.
             KeyboardRow row = new KeyboardRow();
             // botones
@@ -79,8 +79,8 @@ public class SocialBot extends TelegramLongPollingBot {
                System.out.println(update.getMessage().getFrom().getFirstName());
             message.setText("Envía tu pregunta");
                   InlineKeyboardMarkup markupInline = new InlineKeyboardMarkup();
-                List<List<InlineKeyboardButton>> rowsInline = new ArrayList<>();
-                List<InlineKeyboardButton> rowInline = new ArrayList<>();
+                List<List<InlineKeyboardButton>> rowsInline = new ArrayList();
+                List<InlineKeyboardButton> rowInline = new ArrayList();
                 rowInline.add(new InlineKeyboardButton().setText("--------t").setCallbackData("-------"));
                 // Set the keyboard to the markup
                 rowsInline.add(rowInline);
@@ -114,3 +114,4 @@ public class SocialBot extends TelegramLongPollingBot {
     }
 
 }
+

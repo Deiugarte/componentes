@@ -14,10 +14,10 @@
         <class>edu.ulatina.entidades.ListaBot</class>
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
         <properties>
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://168.235.81.213:3306/componentes"/>
-            <property name="javax.persistence.jdbc.user" value="componentes"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://127.0.0.1:3306/componentes-project"/>
+            <property name="javax.persistence.jdbc.user" value="root"/>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
-            <property name="javax.persistence.jdbc.password" value="componentes"/>
+            <property name="javax.persistence.jdbc.password" value="root"/>
         </properties>
     </persistence-unit>
 </persistence>

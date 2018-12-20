@@ -68,6 +68,7 @@
                         document.getElementById("aceptar-btn").style.display = "initial";
                         document.getElementById('status').innerHTML =
                                 "Exito! Presiona Continuar para usar esta aplicacion con tu cuenta de Facebook.";
+
                         window.location.href = "http://localhost:8084/proyecto/landing.xhtml"
                     });
                 }
@@ -85,10 +86,14 @@
                             <h:inputHidden id="name" value="#{loginController.nombre}"/>
                             <h:inputHidden id="email" value="#{loginController.email}"/>
                             <div id="aceptar-btn" style="display:none"><h:commandButton value="Continuar" action="#{loginController.userIsRegistered()}"/></div>             
-                        </h:form>                        
+
+                        </h:form>  
+
                     </div>
                 </div>    
             </div>
         </h:body>
     </f:view>
 </html>
+
+

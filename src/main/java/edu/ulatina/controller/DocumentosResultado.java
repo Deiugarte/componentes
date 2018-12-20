@@ -18,8 +18,9 @@ import javax.faces.bean.ViewScoped;
 import org.json.simple.parser.ParseException;
 
 @ManagedBean
+@SessionScoped
+public class DocumentosResultado implements Serializable{
 
-public class DocumentosResultado implements Serializable {
     
 
     private List<SearchResultSchema> docu;
