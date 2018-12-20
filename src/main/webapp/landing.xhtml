@@ -26,7 +26,7 @@
                     if (response.status === 'connected') {
                         login();
                     } else {                        
-                        window.location.href = "http://localhost:9080/proyecto/faces/login.xhtml";                 
+                        window.location.href = "login.xhtml";                 
                     }
                 }
 
@@ -47,7 +47,7 @@
                     });
 
                     FB.Event.subscribe("auth.logout", function () {
-                        window.location.href = 'http://localhost:8080/proyecto/';
+                        window.location.href = "login.xhtml";
                     });
 
                     FB.getLoginStatus(function (response) {

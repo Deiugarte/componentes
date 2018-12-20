@@ -1,0 +1,35 @@
+<DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html;charset=UTF-8' http-equiv="Content-Type"/>
+                <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
+                <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+                <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+                <link rel="stylesheet" href="css/styles.css"/>
+                <title>Login</title>
+            </f:facet>
+        </h:head>
+        <h:body class="errorBody">          
+            <div class="card" style="width: 18vw;margin:25vh auto;float: none;margin-bottom: 10px;">
+                <img class="card-img-top" src="img/books.jpg" alt="Card image cap"/>
+                <div class="card-body">
+                    <h5 class="error-header"></h5>
+                    <p class="card-text"><div style="font-size: 0.75em" id="status"/></p>
+                    <div id="continue-btn" align="Center"> 
+                        <h:form id="formId">                  
+                            <div id="aceptar-btn" style="display:none"><h:commandButton value="Continuar" action="landing"/></div>             
+                        </h:form>                        
+                    </div>
+                </div>    
+            </div>
+        </h:body>
+    </f:view>
+</html>
+
