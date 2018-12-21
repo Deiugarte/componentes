@@ -14,28 +14,59 @@
                 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
                 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
                 <link rel="stylesheet" href="css/styles.css"/>
-                <title>Login</title>
+                <title>Error</title>
             </f:facet>
         </h:head>
- 
 
-        <h:body class="loginBody">
+        <h:body>          
+            <script>
+                window.fbAsyncInit = function () {
+                    FB.init({
+                        appId: '1943608085935991',
+                        autoLogAppEvents: true,
+                        xfbml: true,
+                        version: 'v3.2'
+                    });
+                };
+                (function (d, s, id) {
+                    var js, fjs = d.getElementsByTagName(s)[0];
+                    if (d.getElementById(id)) {
 
-            <div class="card" style="width: 18vw;margin:25vh auto;float: none;margin-bottom: 10px;">
+                        return;
+                    }
+                    js = d.createElement(s);
+                    js.id = id;
+                    console.log(js.id);
+                    js.src = "https://connect.facebook.net/en_US/sdk.js";
+                    fjs.parentNode.insertBefore(js, fjs);
+                }(document, 'script', 'facebook-jssdk'));
+                function checkLoginState() {
+                    FB.getLoginStatus(function (response) {
+                        window.location.href = "login.xhtml";
+                        statusChangeCallback(response);
+                    });
+                }
+            </script>
+             <div class="card" style="width: 18vw;margin:25vh auto;float: none;margin-bottom: 10px;">
                 <img class="card-img-top" src="img/logo.png" alt="Card image cap"/>
                 <div class="card-body">
                     <h5 class="login-header">Error</h5>
                     <p class="card-text"><div style="font-size: 0.75em" id="status"/></p>
                     <div id="continue-btn" align="Center"> 
-                        <h:form id="formId">
-                            El correo electronico asociado a su cuenta de Facebook, no se encuentra registrada en nuestra 
-                            base de datos. Por favor contacte al administrador para obtener acceso a esta aplicacion.
-                        </h:form>  
+                       <h:form>
+        
+                        <h:outputText style="font-size:0.75em;" value="Su cuenta de Facebook está asociada con un email que no se encuentra registrado en nuestro sistema.&lt;br /&gt;
+                                      Contacte a el Departamento de TI para obtener acceso.&lt;br /&gt;" escape="false"/>
+                        
+                        <h:outputText style="font-size:0.75em;font-weight: bold;" value="Cierre su sesión de Facebook para volver al inicio. &lt;br /&gt;" escape="false"/>
+                       
+                        <fb:login-button size="large" onlogin="checkLoginState();"  autologoutlink="true"></fb:login-button>
+                  
+            </h:form>
                     </div>
                 </div>    
-                </div>
+            </div>
         </h:body>
     </f:view>
 </html>
-
 

@@ -57,22 +57,20 @@
                 }(document, 'script', 'facebook-jssdk'));
 
                 function login() {
-
                     FB.api('me?fields=id,name,email', function (response) {
                         document.getElementById("formId:name").value = response.name;
                         document.getElementById("formId:email").value = response.email;
                         document.getElementById("fb-btn").style.display = "none";
                         document.getElementById("aceptar-btn").style.display = "initial";
                         document.getElementById('status').innerHTML = "Hola, " +
-                                response.name +"! Presiona Continuar para usar esta aplicacion con tu cuenta de Facebook.";
+                                response.name +"! Para continuar debemos autenticar tus credenciales...";
                     });
                 }
-            </script>
-            
+            </script>            
             <div class="card" style="width: 18vw;margin:25vh auto;float: none;margin-bottom: 10px;">
                 <img class="card-img-top" src="img/logo.png" alt="Card image cap"/>
                 <div class="card-body">
-                    <h5 class="login-header">Iniciar Sesion</h5>
+                    <h5 class="login-header">Iniciar Sesión</h5>
                     <p class="card-text"><div style="font-size: 0.75em" id="status"/></p>
                     <div id="fb-btn" class="fb-btn-wrapper" style="margin: 0 auto;text-align:center;"> 
                         <fb:login-button size="large" onlogin="checkLoginState();" autologoutlink="true"> </fb:login-button></div>
@@ -80,7 +78,7 @@
                         <h:form id="formId">
                             <h:inputHidden id="name" value="#{loginController.nombre}"/>
                             <h:inputHidden id="email" value="#{loginController.email}"/>
-                            <div id="aceptar-btn" style="display:none"><h:commandButton value="Continuar" action="#{loginController.userIsRegistered()}"/>
+                            <div id="aceptar-btn" style="display:none"><h:commandButton value="Aceptar" action="#{loginController.userIsRegistered()}"/>
                             </div>                      
                         </h:form>  
                     </div>
