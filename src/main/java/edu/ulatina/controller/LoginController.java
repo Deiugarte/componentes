@@ -5,6 +5,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import edu.ulatina.servicios.ServicioPersona;
 import edu.ulatina.entidades.Persona;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 @ManagedBean(name = "loginController")
@@ -41,22 +43,22 @@ public class LoginController implements Serializable {
     public void submit() {
     System.out.println("*NOMBRE*: " + nombre);
 }
-    public String userIsRegistered() throws Exception{
-   
+    public String userIsRegistered(){
+        System.out.println("**Before IF email is: *"+this.email);
         ServicioPersona sp = new ServicioPersona();
-        try{
-            sp.getEntityManager();
-            if(sp.buscarPorCorreo(this.email) != null){
+        sp.getEntityManager();
+
+        try {
+            Persona p0 = sp.buscarPorCorreo(email);  
+            if(p0 != null){
+                logeado = true;
                 return "landing";                
             }
+        } catch (Exception ex) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            logeado = false;
             return "error";
-
-          
-        } catch(Exception ex){
-            System.out.println(ex);
-            System.out.println("ERROR*");
-        }    
-        return "error";
     }
     public void getDataFromResponse(String response) {
         System.out.println(response);

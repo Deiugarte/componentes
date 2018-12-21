@@ -21,8 +21,6 @@
         <h:body class="loginBody">
             <script>
                 function statusChangeCallback(response) {
-                    console.log('statusChangeCallback');
-                    console.log(response);
                     if (response.status === 'connected') {
                         login();
                     } else {
@@ -61,15 +59,12 @@
                 function login() {
 
                     FB.api('me?fields=id,name,email', function (response) {
-
                         document.getElementById("formId:name").value = response.name;
                         document.getElementById("formId:email").value = response.email;
                         document.getElementById("fb-btn").style.display = "none";
                         document.getElementById("aceptar-btn").style.display = "initial";
-                        document.getElementById('status').innerHTML =
-                                "Exito! Presiona Continuar para usar esta aplicacion con tu cuenta de Facebook.";
-
-                        window.location.href = "landing.xhtml"
+                        document.getElementById('status').innerHTML = "Hola, " +
+                                response.name +"! Presiona Continuar para usar esta aplicacion con tu cuenta de Facebook.";
                     });
                 }
             </script>
@@ -85,10 +80,9 @@
                         <h:form id="formId">
                             <h:inputHidden id="name" value="#{loginController.nombre}"/>
                             <h:inputHidden id="email" value="#{loginController.email}"/>
-                            <div id="aceptar-btn" style="display:none"><h:commandButton value="Continuar" action="#{loginController.userIsRegistered()}"/></div>             
-
+                            <div id="aceptar-btn" style="display:none"><h:commandButton value="Continuar" action="#{loginController.userIsRegistered()}"/>
+                            </div>                      
                         </h:form>  
-
                     </div>
                 </div>    
             </div>
