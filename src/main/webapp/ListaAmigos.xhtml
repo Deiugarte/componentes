@@ -52,40 +52,26 @@ and open the template in the editor.
 
                 function listaAmigos() {
                     FB.api("/me/friends", "GET", {"fields": "id,name"}, function (response) {
+                        var Personas = [];
                         if (response || !response.error) {
-                            var Personas = [];
                             for (var infoPersonaGen in response.data) {
                                 for (var infoPersonaEspe in infoPersonaGen) {
-                                    var newPersona = [];
-                                    var Id = newPersona.push(response.data[infoPersonaEspe].id);
-                                    var Name = newPersona.push(response.data[infoPersonaEspe].name);
-                                    var Persona = Personas.push(newPersona);
-                                }
+                                    
+                                        let persona =
+                                                '<ul class="list-group">' +
+                                                '<li class="list-group-item">' + 'User ID: ' + response.data[infoPersonaEspe].id + '</li>' +
+                                                '<li class="list-group-item">' + 'Name: ' + response.data[infoPersonaEspe].name + '</li>' +
+                                                '</ul>'
+                                                ;
+
+                                        document.getElementById('Amigos').innerHTML = persona;
+                                    }
+                                
                             }
-                            Personas.forEach(function (item, index, array) {
-                                console.log(item, index);
-                                document.write(Personas);
-                            });
                         }
-                        construirAmigos(Personas);
 
                     }
                     );
-                }
-
-                function contruirAmigos(Personas) {
-                    
-                    Personas.forEach(function (item, index, array) {
-                                let persona =
-                            '<h3>' + Persona + '</h3>'
-                            + '<ul class="list-group">' +
-                            '<li class="list-group-item">' + 'User ID: ' + Personas[item].[0] + '</li>' +
-                            '<li class="list-group-item">' + 'Name: ' + Personas[item].[1] + '</li>' +
-                            '</ul>'
-                            ;
-                            
-                            document.getElementById('Amigos').innerHTML = persona;
-                            });
                 }
 
 
@@ -99,26 +85,9 @@ and open the template in the editor.
             </h:form>
 
             <p:panel><h3>Amigos</h3></p:panel>
+            <h:outputText id="Amigos"></h:outputText>
 
-            <h:form> 
-                <p:dataScroller  id="amigos" var="Amigo" chunkSize="10">
-        <f:facet name="header">
-            Ve abajo para ver mas amigos
-        </f:facet>
- 
-        <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
-            <p:graphicImage name="" /> 
- 
-            <p:outputPanel>
-                <h:panelGrid columns="2" cellpadding="5">
-                    <h:outputText value="Id:" />
-                    <h:outputText value="#{Amigo}" style="font-weight: bold"/>
-                </h:panelGrid>
-            </p:outputPanel>
-        </h:panelGrid>
-    </p:dataScroller>
-</h:form>
-            
+
         </h:body>
     </f:view>
 </html>
