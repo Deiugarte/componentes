@@ -65,9 +65,11 @@ and open the template in the editor.
                             }
                             Personas.forEach(function (item, index, array) {
                                 console.log(item, index);
+                                document.write(Personas);
                             });
                         }
                         return Personas;
+                        
                     }
                     );
                 }
@@ -81,9 +83,31 @@ and open the template in the editor.
                     <p:menuitem value="Inicio" icon="ui-icon-home" url="landing.xhtml"/>
                 </p:menubar>
             </h:form>
+            <h:form id="contAmigos">
+            <h:inputHidden id="listaAmigos" value="#{ListaAmigosController.lstPersonas}"/>
+            </h:form>
 
             <p:panel><h3>Amigos</h3></p:panel>
 
+            <h:form> 
+                <p:dataScroller   var="Amigo" chunkSize="10">
+        <f:facet name="header">
+            Ve abajo para ver mas amigos
+        </f:facet>
+ 
+        <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">
+            <p:graphicImage name="" /> 
+ 
+            <p:outputPanel>
+                <h:panelGrid columns="2" cellpadding="5">
+                    <h:outputText value="Id:" />
+                    <h:outputText value="#{Amigo}" style="font-weight: bold"/>
+                </h:panelGrid>
+            </p:outputPanel>
+        </h:panelGrid>
+    </p:dataScroller>
+</h:form>
+            
         </h:body>
     </f:view>
 </html>
