@@ -53,14 +53,14 @@ and open the template in the editor.
                 function listaAmigos() {
                     FB.api("/me/friends", "GET", {"fields": "id,name"}, function (response) {
                         var Personas = [];
-                        if (response || !response.error) {
+                        if (response) {
                             for (var infoPersonaGen in response.data) {
                                 for (var infoPersonaEspe in infoPersonaGen) {
                                     
                                         let persona =
                                                 '<ul class="list-group">' +
-                                                '<li class="list-group-item">' + 'User ID: ' + response.data[infoPersonaEspe].id + '</li>' +
-                                                '<li class="list-group-item">' + 'Name: ' + response.data[infoPersonaEspe].name + '</li>' +
+                                                '<li class="list-group-item">' + 'Id: ' + response.data[infoPersonaEspe].id + '</li>' +
+                                                '<li class="list-group-item">' + 'Nombre: ' + response.data[infoPersonaEspe].name + '</li>' +
                                                 '</ul>'
                                                 ;
 
@@ -68,6 +68,8 @@ and open the template in the editor.
                                     }
                                 
                             }
+                        }else{
+                            console.log("Error, no se pudo encontrar amigos");
                         }
 
                     }
