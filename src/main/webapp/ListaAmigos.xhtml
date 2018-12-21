@@ -52,17 +52,22 @@ and open the template in the editor.
 
 
                 function listaAmigos() {
-                    FB.api("/me/friends", "GET", {"fields":"id,name"},function (response) {
-                    if (response || !response.error) {
-                        console.log(JSON.stringify(response.data));
-                        var data=JSON.stringify(response.data);
-                        console.log(data);
-                        #{ListaAmigosController.setData(data)}
-                        //document.getElementById("lista:amigos").value = response.data;
-                        //for (var id in JSON.stringify(response.data.create())) {
-                         //   console.log(id);
-                        //}
-                    }
+                    FB.api("/me/friends", "GET", {"fields": "id,name"}, function (response) {
+                        if (response || !response.error) {
+                            var Personas = [];
+                            for (var infoPersonaGen in response.data) {
+                                for (var infoPersonaEspe in infoPersonaGen) {
+                                    var newPersona = [];
+                                    var Id = newPersona.push(response.data[infoPersonaEspe].id);
+                                    var Name = newPersona.push(response.data[infoPersonaEspe].name);
+                                    var Persona = Personas.push(newPersona);
+                                }
+                            }
+                            Personas.forEach(function (item, index, array) {
+                                console.log(item, index);
+                            });
+                        }
+                        return Personas;
                     }
                     );
                 }
@@ -74,20 +79,11 @@ and open the template in the editor.
             <h:form>  
                 <p:menubar>
                     <p:menuitem value="Inicio" icon="ui-icon-home" url="landing.xhtml"/>
-            </p:menubar>
-        </h:form>
-        <style type="text/css">
-     .ui-grid-responsive  {
-        text-align: center;
-    }
-</style>
+                </p:menubar>
+            </h:form>
 
- 
-<p:panel><h3>Amigos</h3></p:panel>
-<p:panelGrid id="lista" columns="3" layout="grid">            
-    <h:outputText  id="amigos" value="#{ListaAmigosController.data}" /> 
-</p:panelGrid>
+            <p:panel><h3>Amigos</h3></p:panel>
 
-    </h:body>
-        </f:view>
+        </h:body>
+    </f:view>
 </html>
