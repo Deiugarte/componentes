@@ -9,8 +9,7 @@ and open the template in the editor.
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:fb="http://www.facebook.com/2008/fbml">
+      xmlns:p="http://primefaces.org/ui">
     <f:view contentType="text/html">
         <h:head>
             <f:facet name="first">
@@ -68,10 +67,25 @@ and open the template in the editor.
                                 document.write(Personas);
                             });
                         }
-                        return Personas;
-                        
+                        construirAmigos(Personas);
+
                     }
                     );
+                }
+
+                function contruirAmigos(Personas) {
+                    
+                    Personas.forEach(function (item, index, array) {
+                                let persona =
+                            '<h3>' + Persona + '</h3>'
+                            + '<ul class="list-group">' +
+                            '<li class="list-group-item">' + 'User ID: ' + Personas[item].[0] + '</li>' +
+                            '<li class="list-group-item">' + 'Name: ' + Personas[item].[1] + '</li>' +
+                            '</ul>'
+                            ;
+                            });
+
+                    document.getElementById('Amigos').innerHTML = personas;
                 }
 
 
@@ -90,7 +104,7 @@ and open the template in the editor.
             <p:panel><h3>Amigos</h3></p:panel>
 
             <h:form> 
-                <p:dataScroller   var="Amigo" chunkSize="10">
+                <p:dataScroller  id="amigos" var="Amigo" chunkSize="10">
         <f:facet name="header">
             Ve abajo para ver mas amigos
         </f:facet>
