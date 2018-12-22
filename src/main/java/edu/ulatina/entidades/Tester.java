@@ -1,8 +1,10 @@
 package edu.ulatina.entidades;
 
 
+import edu.ulatina.servicios.ServicioBot;
 import edu.ulatina.servicios.ServicioPersona;
 import edu.ulatina.servicios.ServicioRol;
+import java.util.List;
 
 
 public class Tester {
@@ -32,7 +34,19 @@ public class Tester {
 			//System.out.println("El rol buscado es: "+rol.getNombre());
 			//sp.stopEntityManagerFactory();
 
-			
+		       ServicioBot sb = new ServicioBot();
+                       sb.getEntityManager();
+                       for (ListaBot b : sb.getAllBots()){
+                            //System.out.println(b.getDescripcionBot());
+                            System.out.println(b.getIdBot());
+                            System.out.println(b.getNombreBot());
+                          //  System.out.println(b.getLinkBot());
+                        }
+
+
+                        List<ListaBot> resultadoBot = sb.getAllBots();
+                        System.out.println(resultadoBot);
+                        
 		} catch (
 
 		Exception e) {

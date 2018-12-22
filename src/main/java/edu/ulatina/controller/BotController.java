@@ -1,5 +1,7 @@
 package edu.ulatina.controller;
 
+import edu.ulatina.entidades.ListaBot;
+import edu.ulatina.servicios.ServicioBot;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,13 +24,13 @@ import javax.faces.view.ViewScoped;
 public class BotController implements Serializable {
 
     //private List<Bot> cars = new ArrayList<>();
-    private Bot selectedBot;
+    private ListaBot selectedBot;
     private String idBot;
     private String nombreBot;
     private String descripcionBot;
     private String persona_idPersona;
     private String linkBot;
-    private List<Bot> bots = new ArrayList();
+    private List<ListaBot> bots = new ArrayList();
     // private List<Bot> filteredBots = new ArrayList<>();
 
     /* @PostConstruct
@@ -42,30 +44,14 @@ public class BotController implements Serializable {
     }*/
     @PostConstruct
     public void init() {
-        bots = new BotService().listAllBots();
+        bots = new ServicioBot().getAllBots();
         //filteredBots = bots;
     }
 
     /*public void pageRefresh() {
         PrimeFaces.current().executeScript("location.reload();");
     }*/
-    public void addBot() {
-        Bot b = new Bot();
-        b.setIdBot(idBot);
-        b.setNombreBot(nombreBot);
-        b.setDescripcionBot(descripcionBot);
-        //b.setPersona_idPersona(persona_idPersona);
-        b.setLinkBot(linkBot);
-        new BotService().addBot(b);
-        // PrimeFaces.current().executeScript("PF('dlgBot').hide()");
-        idBot = "";
-        nombreBot = "";
-        descripcionBot = "";
-        persona_idPersona = "";
-        linkBot = "";
-        init();
-        //pageRefresh();
-    }
+   
 
     public String getIdBot() {
         return idBot;
@@ -107,11 +93,11 @@ public class BotController implements Serializable {
         this.linkBot = linkBot;
     }
 
-    public List<Bot> getBots() {
+    public List<ListaBot> getBots() {
         return bots;
     }
 
-    public void setBots(List<Bot> bots) {
+    public void setBots(List<ListaBot> bots) {
         this.bots = bots;
     }
 
@@ -122,11 +108,11 @@ public class BotController implements Serializable {
     public void setFilteredBots(List<Bot> filteredBots) {
         this.filteredBots = filteredBots;
     }*/
-    public Bot getSelectedBot() {
+    public ListaBot getSelectedBot() {
         return selectedBot;
     }
 
-    public void setSelectedBot(Bot selectedBot) {
+    public void setSelectedBot(ListaBot selectedBot) {
         this.selectedBot = selectedBot;
     }
 
