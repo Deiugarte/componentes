@@ -20,63 +20,6 @@
 
         <h:body>
             <script>
-                function statusChangeCallback(response) {
-                    console.log('statusChangeCallback');
-                    console.log(response);
-                    if (response.status === 'connected') {
-                        login();
-                    } else {                        
-                        window.location.href = "login.xhtml";                 
-                    }
-                }
-
-
-                function checkLoginState() {
-                    FB.getLoginStatus(function (response) {
-                        statusChangeCallback(response);
-                    });
-                }
-
-                window.fbAsyncInit = function () {
-                    FB.init({
-                        appId: '1943608085935991',
-                        cookie: true, // enable cookies to allow the server to access 
-                        // the session
-                        xfbml: true, // parse social plugins on this page
-                        version: 'v3.2' // use graph api version 2.8
-                    });
-
-                    FB.Event.subscribe("auth.logout", function () {
-                        window.location.href = "login.xhtml";
-                    });
-
-                    FB.getLoginStatus(function (response) {
-                        statusChangeCallback(response);
-                    });
-                };
-                (function (d, s, id) {
-                    var js, fjs = d.getElementsByTagName(s)[0];
-                    if (d.getElementById(id))
-                        return;
-                    js = d.createElement(s);
-                    js.id = id;
-                    js.src = "https://connect.facebook.net/en_US/sdk.js";
-                    fjs.parentNode.insertBefore(js, fjs);
-                }(document, 'script', 'facebook-jssdk'));
-
-                function login() {
-
-                    FB.api('/me', function (response) {
-                        console.log('Successful login for: ' + response.name);
-                        document.getElementById('status').innerHTML =
-                                'Thanks for logging in, ' + response.name + '!';
-                        window.location.href = "landing.xhtml";
-
-                    });
-                }
-            </script>
-
-            <script>
                 window.fbAsyncInit = function () {
                     FB.init({
                         appId: '1943608085935991',
@@ -84,32 +27,11 @@
                         xfbml: true,
                         version: 'v3.2'
                     });
-
-                    FB.getLoginStatus(function (response) {
-                        if (response.session) {
-                            console.log("1");
-                            top.location.href = "index.xhtml";
-                        }
-                    });
-
-                    FB.getLoginStatus(function (response) {
-                        console.log("2");
-                        console.log("COCAIN" + JSON.stringify(response));
-                        if(response.status === 'unknown'){
-                            console.log("YEY");
-                            window.location.href = "login.xhtml";
-                        }
-                        statusChangeCallback(response);
-                        
-
-                    });
                 };
-
                 (function (d, s, id) {
-                    console.log("3");
                     var js, fjs = d.getElementsByTagName(s)[0];
                     if (d.getElementById(id)) {
-                        console.log("4");
+
                         return;
                     }
                     js = d.createElement(s);
@@ -118,90 +40,13 @@
                     js.src = "https://connect.facebook.net/en_US/sdk.js";
                     fjs.parentNode.insertBefore(js, fjs);
                 }(document, 'script', 'facebook-jssdk'));
-
-                function statusChangeCallback(response) {
-                    if (response.status === 'connected') {
-                        console.log("5");
-                        console.log("BeforeTestAPI");
-                        testAPI();
-                        console.log('Logged in and authenticated');
-                        setElements(true);
-                    } else {
-                        setElements(false);
-                        console.log("6");
-                        console.log('Not authenticated');
-                    }
-                }
-
                 function checkLoginState() {
                     FB.getLoginStatus(function (response) {
-                        console.log(JSON.stringify(response));
+                        window.location.href = "login.xhtml";
                         statusChangeCallback(response);
                     });
                 }
-
-                function testAPI() {
-                    console.log("testAPI");
-                    FB.api('/me?fields=name,last_name,birthday,gender', function (response) {
-                        if (response || !response.error) {
-                            console.log("8");
-                            buildProfile(response);
-//            location.reload();
-                        }
-                    });
-                }
-
-                function buildProfile(user) {
-                    console.log('User1: ' + user);
-//    console.log('User2: ' + ${user.name});
-                    console.log('User3: ' + user.name);
-                    let profile =
-                            '<h3>' + user.name + '</h3>'
-                            + '<ul class="list-group">' +
-                            '<li class="list-group-item">' + 'User ID: ' + user.id + '</li>' +
-                            '<li class="list-group-item">' + 'Name: ' + user.name + '</li>' +
-                            '<li class="list-group-item">' + 'Last Name: ' + user.last_name + '</li>' +
-                            '<li class="list-group-item">' + 'Birthday: ' + user.birthday + '</li>' +
-                            '<li class="list-group-item">' + 'Gender: ' + user.gender + '</li>' +
-                            '</ul>'
-                            ;
-
-                    document.getElementById('profile').innerHTML = profile;
-                }
-
-
-                function setElements(isLoggedIn) {
-                    if (isLoggedIn) {
-                        console.log("9");
-                        document.getElementById('logout').style.display = 'block';
-                        document.getElementById('profile').style.display = 'block';
-                        document.getElementById('fb-btn').style.display = 'none';
-                        document.getElementById('heading').style.display = 'none';
-                    } else {
-                        console.log("10");
-                        document.getElementById('logout').style.display = 'none';
-                        document.getElementById('profile').style.display = 'none';
-                        document.getElementById('fb-btn').style.display = 'block';
-                        document.getElementById('heading').style.display = 'block';
-                    }
-                }
-
-                function checkLoginState() {
-                    FB.getLoginStatus(function (response) {
-                        console.log("11");
-                        if (response.status === "unknown") {
-                            location.reload();
-                        } else if (response.status === "not_authorized") {
-                            window.location.href = "http://localhost:8080/proyecto"
-
-                        }
-                        statusChangeCallback(response);
-                    });
-                }
-
             </script>
-
-
             <h:form>
                 <p:growl id="messages"/>
 
@@ -219,12 +64,11 @@
                     <p:menuitem value="publicaciones" url="indexPublicacion.xhtml" icon="pi pi-times" />
                     <f:facet name="options">
                         <p:inputText style="margin:1px 10px 1px 1px;" placeholder="Search"/>
+                        <h:outputText style="font-size:0.75em;margin-right:2px;padding-bottom:3px;" value="Bienvenido, #{loginController.nombre}. "/>
                         <fb:login-button size="large" onlogin="checkLoginState();" autologoutlink="true"> </fb:login-button>
                     </f:facet>
                 </p:menubar>
             </h:form>
-
         </h:body>
     </f:view>
 </html>
-
