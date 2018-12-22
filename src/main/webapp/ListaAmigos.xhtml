@@ -1,30 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:fb="http://www.facebook.com/2008/fbml">
+      xmlns:p="http://primefaces.org/ui">
     <f:view contentType="text/html">
-    <h:head>
-        <f:facet name="first">
+        <h:head>
+            <f:facet name="first">
                 <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
                 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
                 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
                 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
                 <link rel="stylesheet" href="css/styles.css"/>
                 <title>Lista amigos</title>
-        </f:facet>
-    </h:head>
-    <h:body id="body">
-        <script>
-
+            </f:facet>
+        </h:head>
+        <h:body id="body">
+            <script>
+                (function (d, s, id) {
+                    var js, fjs = d.getElementsByTagName(s)[0];
+                    if (d.getElementById(id))
+                        return;
+                    js = d.createElement(s);
+                    js.id = id;
+                    js.src = "https://connect.facebook.net/en_US/sdk.js";
+                    fjs.parentNode.insertBefore(js, fjs);
+                }(document, 'script', 'facebook-jssdk'));
                 window.fbAsyncInit = function () {
                     FB.init({
                         appId: '1943608085935991',
@@ -36,72 +38,38 @@ and open the template in the editor.
                     });
 
                     FB.getLoginStatus(function (response) {
-                        statusChangeCallback(response, function () {});
-                    }, {
-                        scope: 'user_friends',
-                        return_scopes: true
+                        listaAmigos();
+                    });
+                };
+                function listaAmigos() {
+                    FB.api("/me/friends", "GET", {"fields": "id,name"}, function (response) {
+                        let persona='<li>Amigos</li>';
+                        if (response) {
+                            for (var infoPersona in response.data) {
+
+                                persona = persona +
+                                        '<li class="list-group-item">' + 'Id: ' + response.data[infoPersona].id + '</li>' +
+                                        '<li class="list-group-item">' + 'Nombre: ' + response.data[infoPersona].name + '</li>';
+                            }
+                            document.getElementById('Amigos').innerHTML = persona;
+                        } else {
+                            console.log("Error, no se pudo encontrar amigos");
+                        }
+
                     }
                     );
-                };
-
-
-
-                function checkLoginState() {
-                    FB.getLoginStatus(function (response) {
-                        statusChangeCallback(response);
-                    });
                 }
-
-                function statusChangeCallback(response) {
-                    //console.log('statusChangeCallback');
-                    //console.log(JSON.stringify(response));
-                    if (response.status === 'connected') {
-                        
-                        FB.api(
-                                "/{friend-list-id}",
-                                function (response) {
-                                    if (response || !response.error) {
-                                        /* handle the result */
-                                    }
-                                }
-                        );
-                    } else {
-                        // The person is not logged into your app or we are unable to tell.
-                        //console.log ('Please log into this app.');
-                    }
-                }
-                
-
-                
-        </script>
-
-        <h:form>  
-            <p:menubar>
-                <p:menuitem value="Inicio" icon="ui-icon-home" url="landing.xhtml"/>
-            </p:menubar>
-        </h:form>
-        <style type="text/css">
-     .ui-grid-responsive  {
-        text-align: center;
-    }
-</style>
-
- 
-<p:panel><h3>Amigos</h3></p:panel>
-<p:panelGrid columns="3" layout="grid">            
-    <h:outputText value="Content" /> 
-    <h:outputText value="Content" /> 
-    <h:outputText value="Content" /> 
-     
-    <h:outputText value="Content" /> 
-    <h:outputText value="Content" /> 
-    <h:outputText value="Content" /> 
-     
-    <h:outputText value="Content" /> 
-    <h:outputText value="Content" /> 
-    <h:outputText value="Content" /> 
-</p:panelGrid>
-
-    </h:body>
-        </f:view>
+            </script>
+            <h:form>  
+                <p:menubar>
+                    <p:menuitem value="Inicio" icon="ui-icon-home" url="landing.xhtml"/>
+                </p:menubar>
+            </h:form>
+            <p:panel>
+                <ul class="list-group" > 
+                    <li id="Amigos"></li>
+                </ul>
+            </p:panel>
+        </h:body>
+    </f:view>
 </html>
