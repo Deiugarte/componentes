@@ -14,7 +14,7 @@ public class Tester {
 			ServicioPersona sp = new ServicioPersona();
 			sr.getEntityManager();
 			sp.getEntityManager();
-			Rol rol = sr.buscarPorId(3);
+			//Rol rol = sr.buscarPorId(3);
 			
 			Persona persona = new Persona();
 			persona.setIdPersona(4);
@@ -29,8 +29,8 @@ public class Tester {
 			//Llenar BD primero antes de usar estos metodos
 			Persona resultadoPersona = sp.buscarPorCorreo("jean@example.com");
 			System.out.println("La persona buscada es: "+resultadoPersona.getNombre());
-			System.out.println("El rol buscado es: "+rol.getNombre());
-			sp.stopEntityManagerFactory();
+			//System.out.println("El rol buscado es: "+rol.getNombre());
+			//sp.stopEntityManagerFactory();
 
 			
 		} catch (

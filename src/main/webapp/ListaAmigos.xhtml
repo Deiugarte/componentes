@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
@@ -28,11 +27,10 @@
                     js.src = "https://connect.facebook.net/en_US/sdk.js";
                     fjs.parentNode.insertBefore(js, fjs);
                 }(document, 'script', 'facebook-jssdk'));
-
                 window.fbAsyncInit = function () {
                     FB.init({
                         appId: '1943608085935991',
-                        cookie: true, // enable cookies to allow the server to access 
+                        cookie: true, // enable cookies to allow the server to access
                         autoLogAppEvents: true,
                         status: true,
                         xfbml: true, // parse social plugins on this page
@@ -40,54 +38,38 @@
                     });
 
                     FB.getLoginStatus(function (response) {
-                        listFriend();
+                        listaAmigos();
                     });
                 };
+                function listaAmigos() {
+                    FB.api("/me/friends", "GET", {"fields": "id,name"}, function (response) {
+                        let persona='<li>Amigos</li>';
+                        if (response) {
+                            for (var infoPersona in response.data) {
 
-
-
-                function listFriend() {
-                    FB.api('/me/friends', function (response) {
-                        if (response || !response.error) {
-                            //console.log(JSON.stringify(response.summary));
-                            console.log(JSON.stringify(response.data));
+                                persona = persona +
+                                        '<li class="list-group-item">' + 'Id: ' + response.data[infoPersona].id + '</li>' +
+                                        '<li class="list-group-item">' + 'Nombre: ' + response.data[infoPersona].name + '</li>';
+                            }
+                            document.getElementById('Amigos').innerHTML = persona;
                         } else {
-                            console.log("algo ha salido mal");
+                            console.log("Error, no se pudo encontrar amigos");
                         }
+
                     }
                     );
                 }
-
-
             </script>
-
-            <h:form>  
+            <h:form>
                 <p:menubar>
                     <p:menuitem value="Inicio" icon="ui-icon-home" url="landing.xhtml"/>
                 </p:menubar>
             </h:form>
-            <style type="text/css">
-                .ui-grid-responsive  {
-                    text-align: center;
-                }
-            </style>
-
-
-            <p:panel><h3>Amigos</h3></p:panel>
-            <p:panelGrid columns="3" layout="grid">            
-                <h:outputText value="Content" /> 
-                <h:outputText value="Content" /> 
-                <h:outputText value="Content" /> 
-
-                <h:outputText value="Content" /> 
-                <h:outputText value="Content" /> 
-                <h:outputText value="Content" /> 
-
-                <h:outputText value="Content" /> 
-                <h:outputText value="Content" /> 
-                <h:outputText value="Content" /> 
-            </p:panelGrid>
-
+            <p:panel>
+                <ul class="list-group" > 
+                    <li id="Amigos"></li>
+                </ul>
+            </p:panel>
         </h:body>
     </f:view>
 </html>

@@ -15,6 +15,7 @@ import java.util.Date;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
@@ -39,6 +40,12 @@ public class PublicacionBean implements Serializable {
     Publicacion publicacion = new Publicacion();
     Publicacion newpublicacion = new Publicacion();
     Publicacion selectedPublicacion = new Publicacion();
+    @ManagedProperty(value="#{loginController}")
+    private LoginController loginBean; // +setter
+
+    public void setLoginBean(LoginController loginBean) {
+        this.loginBean = loginBean;
+    }
 
     public Publicacion getSelectedPublicacion() {
         return selectedPublicacion;
@@ -75,7 +82,8 @@ public class PublicacionBean implements Serializable {
             publicacion.setTitulo(titulo);
             publicacion.setContenido(contenido);
             publicacion.setFecha(date);
-            publicacion.setPersonaBean(servicioPersona.buscarPorCorreo("proyecto2ulatina@gmail.com"));
+            publicacion.setPersonaBean(servicioPersona.buscarPorCorreo(loginBean.getEmail()));
+            System.out.println(loginBean.getEmail());
             publicacion.setRedsocial(servicioRed.buscarPorNombre("Facebook"));
             //publicacion.setIdPublicacion(3);
             System.out.println(publicacion);
