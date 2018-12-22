@@ -9,6 +9,16 @@ import javax.persistence.*;
  * 
  */
 @Entity
+@NamedQueries(value = {
+		@NamedQuery(name="ListaBot.findAll", query="SELECT l FROM ListaBot l"),
+		
+})
+@NamedNativeQueries({
+	@NamedNativeQuery(
+			name="ListaBot.findAllSQL", 
+			query="SELECT idBot, nombreBot FROM ListaBot", 
+			resultClass=ListaBot.class)			
+})
 @NamedQuery(name="ListaBot.findAll", query="SELECT l FROM ListaBot l")
 public class ListaBot implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -58,5 +68,9 @@ public class ListaBot implements Serializable {
 	public void setPersona(Persona persona) {
 		this.persona = persona;
 	}
+
+    void setPersona(int i) {
+        this.persona = persona;
+    }
 
 }

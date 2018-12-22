@@ -1,12 +1,16 @@
 package edu.ulatina.controller;
 
+import edu.ulatina.servicios.ServicioBot;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
-//import org.primefaces.*;
+//import org.primefaces.PrimeFaces;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -15,13 +19,12 @@ import javax.faces.view.ViewScoped;
  */
 /**
  *
- * @author Mariela Giraldo
+ * @author Luis
  */
 @ManagedBean(name = "botController")
 @ViewScoped
 public class BotController implements Serializable {
 
-    //private List<Bot> cars = new ArrayList<>();
     private Bot selectedBot;
     private String idBot;
     private String nombreBot;
@@ -29,18 +32,13 @@ public class BotController implements Serializable {
     private String persona_idPersona;
     private String linkBot;
     private List<Bot> bots = new ArrayList();
+    ServicioBot BotDao = new ServicioBot();
+    Bot bot = new Bot();
+    private String Key;
     // private List<Bot> filteredBots = new ArrayList<>();
 
-    /* @PostConstruct
-    public void init() {
-        Bot car1 = new Bot("Red", "Mateo", 125, 13);
-        Bot car2 = new Bot("Green", "Fecha", 345, 69);
-        Bot car3 = new Bot("Blue", "Deberias", 675, 420);
-        cars.add(car1);
-        cars.add(car2);
-        cars.add(car3);
-    }*/
-    @PostConstruct
+
+    /*@PostConstruct;
     public void init() {
         bots = new BotService().listAllBots();
         //filteredBots = bots;
@@ -49,24 +47,6 @@ public class BotController implements Serializable {
     /*public void pageRefresh() {
         PrimeFaces.current().executeScript("location.reload();");
     }*/
-    public void addBot() {
-        Bot b = new Bot();
-        b.setIdBot(idBot);
-        b.setNombreBot(nombreBot);
-        b.setDescripcionBot(descripcionBot);
-        //b.setPersona_idPersona(persona_idPersona);
-        b.setLinkBot(linkBot);
-        new BotService().addBot(b);
-        // PrimeFaces.current().executeScript("PF('dlgBot').hide()");
-        idBot = "";
-        nombreBot = "";
-        descripcionBot = "";
-        persona_idPersona = "";
-        linkBot = "";
-        init();
-        //pageRefresh();
-    }
-
     public String getIdBot() {
         return idBot;
     }
@@ -130,4 +110,38 @@ public class BotController implements Serializable {
         this.selectedBot = selectedBot;
     }
 
+    public String getKey() {
+        return Key;
+    }
+
+    public void setToken(String Key) {
+        this.Key = Key;
+    }
+
+public void manejoToken() throws IOException {
+        FacesContext fc = FacesContext.getCurrentInstance();
+ 
+        if (bot.validarToken(Key)) {
+            
+            
+            
+                /*if (!bot.getNombreBot().isEmpty()) {
+                    nombre = user.getNombre().toUpperCase().substring(0, 1) + user.getNombre().substring(1);
+                } else {
+                    nombre = user.getNombre();
+                }
+                if (!user.getApellido().isEmpty()) {
+                    apellido = user.getApellido().toUpperCase().substring(0, 1) + user.getApellido().substring(1);
+                } else {
+                    apellido = user.getApellido();
+                }
+                telefono = user.getTelefono();
+                fc.getApplication().getNavigationHandler().handleNavigation(fc, null, "bienvenida.xhtml?faces-redirect=true");
+*/
+        } else {
+            fc.getCurrentInstance().addMessage("mensajes",
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!",
+                            "Token Invalido"));
+        }
+    }
 }
