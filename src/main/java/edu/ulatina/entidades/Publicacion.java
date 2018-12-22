@@ -35,6 +35,10 @@ public class Publicacion implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+        @Basic(optional = false)
+        @Column(name = "idPublicacion")
+        @SequenceGenerator( name = "mySeq", sequenceName = "MY_SEQ", allocationSize = 1, initialValue = 2 )
+        @GeneratedValue(strategy=GenerationType.IDENTITY, generator="mySeq")
 	private int idPublicacion;
 
 	private String contenido;
@@ -56,7 +60,7 @@ public class Publicacion implements Serializable {
 	//bi-directional many-to-one association to Redsocial
 	@ManyToOne
 	@JoinColumn(name="RedSocial")
-	private Redsocial redsocial;
+	private RedSocial redsocial;
 
 	public Publicacion() {
 	}
@@ -109,11 +113,11 @@ public class Publicacion implements Serializable {
 		this.personaBean = personaBean;
 	}
 
-	public Redsocial getRedsocial() {
+	public RedSocial getRedsocial() {
 		return this.redsocial;
 	}
 
-	public void setRedsocial(Redsocial redsocial) {
+	public void setRedsocial(RedSocial redsocial) {
 		this.redsocial = redsocial;
 	}
 

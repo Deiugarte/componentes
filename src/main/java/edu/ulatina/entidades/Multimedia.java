@@ -23,7 +23,7 @@ public class Multimedia implements Serializable {
 	//bi-directional many-to-many association to Publicacion
 	@ManyToMany
 	@JoinTable(
-		name="multimediaporpublicacion"
+		name="MULTIMEDIAPORPUBLICACION"
 		, joinColumns={
 			@JoinColumn(name="Multimedia")
 			}
