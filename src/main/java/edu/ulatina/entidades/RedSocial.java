@@ -10,8 +10,11 @@ import java.util.List;
  * 
  */
 @Entity
-@NamedQuery(name="Redsocial.findAll", query="SELECT r FROM Redsocial r")
-public class Redsocial implements Serializable {
+@NamedQueries(value = {
+@NamedQuery(name="RedSocial.findAll", query="SELECT r FROM RedSocial r"),
+@NamedQuery(name = "RedSocial.findByNombre", query = "SELECT r FROM RedSocial r WHERE r.nombre = :nombre")
+})
+public class RedSocial implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -22,10 +25,10 @@ public class Redsocial implements Serializable {
 	private String nombre;
 
 	//bi-directional many-to-one association to Publicacion
-	@OneToMany(mappedBy="redsocial")
+	@OneToMany(mappedBy="redsocial", cascade=CascadeType.ALL)
 	private List<Publicacion> publicacions;
 
-	public Redsocial() {
+	public RedSocial() {
 	}
 
 	public int getIdRedSocial() {

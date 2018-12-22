@@ -73,7 +73,10 @@
                 <p:inputTextarea value="#{publicacionBean.newpublicacion.contenido}" rows="5" cols="30" counter="display" maxlength="500" counterTemplate="{0} characters remaining." autoResize="false" />
                 <br/>
                 <h:outputText id="display" />
-                <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">    
+                <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5"> 
+                <p:inputText value="#{publicacionBean.newpublicacion.fecha}">  
+                    <f:convertDateTime pattern="yyyy-MM-dd"/>  
+                </p:inputText>
                 </h:panelGrid>  
 
                 <p:commandButton icon="ui-icon-plusthick" update=":form1:dataTable" type="submit" value="Send" action="#{publicacionBean.addPublicacion()}" />
